@@ -1,0 +1,99 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:55:39 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M",
+  "batch": 2,
+  "seq": 128,
+  "steps_profiled": 3,
+  "top_ops_by_self_cpu": [
+    {
+      "op": "aten::mm",
+      "calls": 1899,
+      "self_cpu_ms": 689.56,
+      "self_cpu_pct": 56.5
+    },
+    {
+      "op": "aten::mul",
+      "calls": 2829,
+      "self_cpu_ms": 69.03,
+      "self_cpu_pct": 5.7
+    },
+    {
+      "op": "aten::add",
+      "calls": 729,
+      "self_cpu_ms": 58.97,
+      "self_cpu_pct": 4.8
+    },
+    {
+      "op": "aten::fill_",
+      "calls": 1371,
+      "self_cpu_ms": 49.92,
+      "self_cpu_pct": 4.1
+    },
+    {
+      "op": "forward",
+      "calls": 3,
+      "self_cpu_ms": 35.81,
+      "self_cpu_pct": 2.9
+    },
+    {
+      "op": "aten::_scaled_dot_product_flash_attention_for_cpu_backward",
+      "calls": 90,
+      "self_cpu_ms": 32.05,
+      "self_cpu_pct": 2.6
+    },
+    {
+      "op": "autograd::engine::evaluate_function: EmbeddingBackward0",
+      "calls": 3,
+      "self_cpu_ms": 26.97,
+      "self_cpu_pct": 2.2
+    },
+    {
+      "op": "backward",
+      "calls": 3,
+      "self_cpu_ms": 24.0,
+      "self_cpu_pct": 2.0
+    },
+    {
+      "op": "aten::add_",
+      "calls": 813,
+      "self_cpu_ms": 18.46,
+      "self_cpu_pct": 1.5
+    },
+    {
+      "op": "aten::_log_softmax_backward_data",
+      "calls": 3,
+      "self_cpu_ms": 13.94,
+      "self_cpu_pct": 1.1
+    },
+    {
+      "op": "aten::_scaled_dot_product_flash_attention_for_cpu",
+      "calls": 90,
+      "self_cpu_ms": 12.59,
+      "self_cpu_pct": 1.0
+    },
+    {
+      "op": "autograd::engine::evaluate_function: LogSoftmaxBackward0",
+      "calls": 3,
+      "self_cpu_ms": 12.19,
+      "self_cpu_pct": 1.0
+    }
+  ]
+}

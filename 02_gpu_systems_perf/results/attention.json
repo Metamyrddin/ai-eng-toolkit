@@ -1,0 +1,101 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:55:15 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "heads": 8,
+  "head_dim": 64,
+  "causal": true,
+  "rows": [
+    {
+      "seq_len": 256,
+      "naive": {
+        "ms_median": 0.49,
+        "max_abs_err_vs_fp64_naive": 7.152557373046875e-07
+      },
+      "tiled_online_softmax": {
+        "ms_median": 1.94,
+        "max_abs_err_vs_fp64_naive": 8.344650268554688e-07
+      },
+      "torch_sdpa": {
+        "ms_median": 0.2,
+        "max_abs_err_vs_fp64_naive": 5.960464477539062e-07
+      },
+      "score_matrix_mb_fp32_naive": 2.0,
+      "score_tile_mb_fp32_tiled": 0.125
+    },
+    {
+      "seq_len": 512,
+      "naive": {
+        "ms_median": 3.25,
+        "max_abs_err_vs_fp64_naive": 8.344650268554688e-07
+      },
+      "tiled_online_softmax": {
+        "ms_median": 6.29,
+        "max_abs_err_vs_fp64_naive": 7.152557373046875e-07
+      },
+      "torch_sdpa": {
+        "ms_median": 0.49,
+        "max_abs_err_vs_fp64_naive": 8.344650268554688e-07
+      },
+      "score_matrix_mb_fp32_naive": 8.0,
+      "score_tile_mb_fp32_tiled": 0.125
+    },
+    {
+      "seq_len": 1024,
+      "naive": {
+        "ms_median": 14.07,
+        "max_abs_err_vs_fp64_naive": 5.960464477539062e-07
+      },
+      "tiled_online_softmax": {
+        "ms_median": 19.06,
+        "max_abs_err_vs_fp64_naive": 7.152557373046875e-07
+      },
+      "torch_sdpa": {
+        "ms_median": 1.19,
+        "max_abs_err_vs_fp64_naive": 8.344650268554688e-07
+      },
+      "score_matrix_mb_fp32_naive": 32.0,
+      "score_tile_mb_fp32_tiled": 0.125
+    },
+    {
+      "seq_len": 2048,
+      "naive": {
+        "ms_median": 66.73,
+        "max_abs_err_vs_fp64_naive": 7.152557373046875e-07
+      },
+      "tiled_online_softmax": {
+        "ms_median": 71.52,
+        "max_abs_err_vs_fp64_naive": 5.960464477539062e-07
+      },
+      "torch_sdpa": {
+        "ms_median": 4.0,
+        "max_abs_err_vs_fp64_naive": 5.960464477539062e-07
+      },
+      "score_matrix_mb_fp32_naive": 128.0,
+      "score_tile_mb_fp32_tiled": 0.125
+    }
+  ],
+  "peak_extra_rss_mb": {
+    "seq_len": 4096,
+    "naive": 1072.6,
+    "tiled_online_softmax": 19.0,
+    "torch_sdpa": 17.0
+  },
+  "memory_method": "fresh subprocess per implementation; peak RSS (psutil, sampled every 0.5 ms) minus RSS before the call; includes output tensor"
+}
