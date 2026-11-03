@@ -1,0 +1,17 @@
+# This file is a settings file for the Accelerate tool that tells it how to train with FSDP on several
+# GPUs. It has NOT been tested, because it needs GPUs. It belongs to the cloud part of area 3.
+#
+# More technical notes:
+# UNTESTED (no GPU). `accelerate launch --config_file accelerate_fsdp_config.yaml train.py`
+# Keys follow the Accelerate FSDP docs: https://huggingface.co/docs/accelerate/usage_guides/fsdp
+# (field names change between Accelerate versions - generate a fresh file with `accelerate config` and compare).
+compute_environment: LOCAL_MACHINE
+distributed_type: FSDP
+mixed_precision: bf16
+num_machines: 1
+num_processes: 8
+fsdp_config:
+  fsdp_version: 2
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_state_dict_type: SHARDED_STATE_DICT
+  fsdp_offload_params: false
