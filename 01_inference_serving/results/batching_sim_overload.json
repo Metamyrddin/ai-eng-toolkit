@@ -1,0 +1,28 @@
+{
+  "kind": "SIMULATION (not a real-server measurement)",
+  "args": {
+    "n": 200,
+    "max_batch": 8,
+    "a": 15.0,
+    "b": 1.0,
+    "arrival_rate": 0.05,
+    "seed": 0,
+    "out": "01_inference_serving/results/batching_sim_overload.json"
+  },
+  "modes": {
+    "static": {
+      "mean_latency_ms": 15767.4,
+      "p95_latency_ms": 29100.9,
+      "makespan_ms": 34372.2,
+      "useful_tokens": 4861,
+      "throughput_tok_per_s": 141.4
+    },
+    "continuous": {
+      "mean_latency_ms": 5277.0,
+      "p95_latency_ms": 9504.9,
+      "makespan_ms": 14603.2,
+      "useful_tokens": 4861,
+      "throughput_tok_per_s": 332.9
+    }
+  }
+}

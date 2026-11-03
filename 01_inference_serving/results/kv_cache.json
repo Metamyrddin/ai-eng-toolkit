@@ -1,0 +1,76 @@
+{
+  "step_cost_sweep": [
+    {
+      "prefix_len": 32,
+      "ms_full_recompute_median": 24.93,
+      "ms_cached_step_median": 11.56,
+      "speedup": 2.2
+    },
+    {
+      "prefix_len": 64,
+      "ms_full_recompute_median": 35.1,
+      "ms_cached_step_median": 12.36,
+      "speedup": 2.8
+    },
+    {
+      "prefix_len": 128,
+      "ms_full_recompute_median": 53.14,
+      "ms_cached_step_median": 13.36,
+      "speedup": 4.0
+    },
+    {
+      "prefix_len": 256,
+      "ms_full_recompute_median": 105.04,
+      "ms_cached_step_median": 15.31,
+      "speedup": 6.9
+    },
+    {
+      "prefix_len": 512,
+      "ms_full_recompute_median": 189.88,
+      "ms_cached_step_median": 24.79,
+      "speedup": 7.7
+    }
+  ],
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 17:47:11 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M",
+  "prompt_tokens": 13,
+  "new_tokens": 128,
+  "tokens_identical": true,
+  "total_seconds_no_cache": 6.053,
+  "total_seconds_with_cache": 1.646,
+  "ms_per_token_quartiles_no_cache": [
+    33.31,
+    46.76,
+    49.51,
+    59.57
+  ],
+  "ms_per_token_quartiles_with_cache": [
+    11.63,
+    14.15,
+    12.84,
+    12.61
+  ],
+  "ttft_ms_with_cache": 21.02,
+  "kv_bytes_measured": 6451200,
+  "kv_bytes_formula": 6451200,
+  "kv_formula_matches": true,
+  "note": "single run, fp32, CPU; use --new-tokens larger for a clearer slope. Not a repeated benchmark."
+}

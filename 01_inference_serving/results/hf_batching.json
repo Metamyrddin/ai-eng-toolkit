@@ -1,0 +1,63 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 17:47:43 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "device": "cpu",
+  "dtype": "float32",
+  "new_tokens": 64,
+  "rows": [
+    {
+      "batch": 1,
+      "padded_prompt_len": 8,
+      "ttft_ms_median": 19.5,
+      "e2e_s_median": 0.85,
+      "decode_tok_s_aggregate_median": 76.0,
+      "decode_tok_s_per_request": 76.0,
+      "repeats": 5
+    },
+    {
+      "batch": 2,
+      "padded_prompt_len": 8,
+      "ttft_ms_median": 25.7,
+      "e2e_s_median": 1.153,
+      "decode_tok_s_aggregate_median": 111.3,
+      "decode_tok_s_per_request": 55.7,
+      "repeats": 5
+    },
+    {
+      "batch": 4,
+      "padded_prompt_len": 12,
+      "ttft_ms_median": 37.3,
+      "e2e_s_median": 1.328,
+      "decode_tok_s_aggregate_median": 195.2,
+      "decode_tok_s_per_request": 48.8,
+      "repeats": 5
+    },
+    {
+      "batch": 8,
+      "padded_prompt_len": 12,
+      "ttft_ms_median": 50.8,
+      "e2e_s_median": 1.516,
+      "decode_tok_s_aggregate_median": 343.6,
+      "decode_tok_s_per_request": 43.0,
+      "repeats": 5
+    }
+  ]
+}

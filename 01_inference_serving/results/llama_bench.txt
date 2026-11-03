@@ -1,0 +1,16 @@
+load_backend: loaded RPC backend from /workspace/ai-eng-toolkit/.bin/llama-b12061/libggml-rpc.so
+load_backend: loaded CPU backend from /workspace/ai-eng-toolkit/.bin/llama-b12061/libggml-cpu-sapphirerapids.so
+| model                          |       size |     params | backend    | threads |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | --------------: | -------------------: |
+| qwen2 1B Q8_0                  | 638.74 MiB |   630.17 M | CPU        |       8 |           pp128 |     2157.40 ± 160.69 |
+| qwen2 1B Q8_0                  | 638.74 MiB |   630.17 M | CPU        |       8 |            tg64 |       135.30 ± 38.93 |
+
+build: d02b4c0d6 (12061)
+load_backend: loaded RPC backend from /workspace/ai-eng-toolkit/.bin/llama-b12061/libggml-rpc.so
+load_backend: loaded CPU backend from /workspace/ai-eng-toolkit/.bin/llama-b12061/libggml-cpu-sapphirerapids.so
+| model                          |       size |     params | backend    | threads |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | --------------: | -------------------: |
+| qwen2 1B Q4_K - Medium         | 462.96 MiB |   630.17 M | CPU        |       8 |           pp128 |       664.04 ± 38.45 |
+| qwen2 1B Q4_K - Medium         | 462.96 MiB |   630.17 M | CPU        |       8 |            tg64 |       123.07 ± 25.50 |
+
+build: d02b4c0d6 (12061)
