@@ -1,0 +1,5 @@
+Psi = 7.0B params, N = 8 GPUs (model states only)
+  DDP baseline :   112.00 GB / GPU
+  ZeRO-1       :    38.50 GB / GPU
+  ZeRO-2       :    26.25 GB / GPU
+  ZeRO-3       :    14.00 GB / GPU
