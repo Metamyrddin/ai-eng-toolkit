@@ -1,0 +1,6 @@
+{
+  "mode": "template",
+  "n_sft": 2000,
+  "n_pairs": 2000,
+  "n_test": 200
+}
