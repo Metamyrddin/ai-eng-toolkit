@@ -1,0 +1,162 @@
+{
+ "2309.06180": [
+  "Efficient Memory Management",
+  "PagedAttention"
+ ],
+ "2211.17192": [
+  "Fast Inference from Transformers via Speculative Decoding"
+ ],
+ "2302.01318": [
+  "Accelerating Large Language Model Decoding with Speculative Sampling"
+ ],
+ "2205.14135": [
+  "FlashAttention",
+  "IO-Awareness"
+ ],
+ "2307.08691": [
+  "FlashAttention-2"
+ ],
+ "1805.02867": [
+  "Online normalizer calculation for softmax"
+ ],
+ "2210.17323": [
+  "GPTQ"
+ ],
+ "2306.00978": [
+  "AWQ"
+ ],
+ "2208.07339": [
+  "LLM.int8()"
+ ],
+ "1609.07843": [
+  "Pointer Sentinel Mixture Models"
+ ],
+ "1910.02054": [
+  "ZeRO",
+  "Memory Optimizations"
+ ],
+ "1710.03740": [
+  "Mixed Precision Training"
+ ],
+ "2304.11277": [
+  "PyTorch FSDP"
+ ],
+ "2106.09685": [
+  "LoRA"
+ ],
+ "2305.14314": [
+  "QLoRA"
+ ],
+ "2305.18290": [
+  "Direct Preference Optimization"
+ ],
+ "2203.02155": [
+  "Training language models to follow instructions"
+ ],
+ "2009.01325": [
+  "Learning to summarize"
+ ],
+ "2203.14465": [
+  "STaR"
+ ],
+ "2308.01825": [
+  "Scaling Relationship on Learning Mathematical Reasoning"
+ ],
+ "2502.02737": [
+  "SmolLM2"
+ ],
+ "1803.05457": [
+  "Think you have Solved Question Answering",
+  "ARC"
+ ],
+ "2005.14165": [
+  "Language Models are Few-Shot Learners"
+ ],
+ "2406.10229": [
+  "Quantifying Variance in Evaluation Benchmarks"
+ ],
+ "2107.06499": [
+  "Deduplicating Training Data Makes Language Models Better"
+ ],
+ "2112.11446": [
+  "Scaling Language Models",
+  "Gopher"
+ ],
+ "1910.10683": [
+  "Exploring the Limits of Transfer Learning"
+ ],
+ "1911.00359": [
+  "CCNet"
+ ],
+ "2406.17557": [
+  "FineWeb"
+ ],
+ "2005.11401": [
+  "Retrieval-Augmented Generation"
+ ],
+ "2104.08663": [
+  "BEIR"
+ ],
+ "2004.14974": [
+  "Fact or Fiction",
+  "Verifying Scientific Claims"
+ ],
+ "1908.10084": [
+  "Sentence-BERT"
+ ],
+ "1702.08734": [
+  "Billion-scale similarity search with GPUs"
+ ],
+ "2210.03629": [
+  "ReAct"
+ ],
+ "2303.08112": [
+  "Tuned Lens"
+ ],
+ "2202.05262": [
+  "Locating and Editing Factual Associations in GPT"
+ ],
+ "2211.00593": [
+  "Interpretability in the Wild"
+ ],
+ "2404.15255": [
+  "How to use and interpret activation patching"
+ ],
+ "2402.04249": [
+  "HarmBench"
+ ],
+ "2307.15043": [
+  "Universal and Transferable Adversarial Attacks"
+ ],
+ "2410.08847": [
+  "Unintentional Unalignment",
+  "Likelihood Displacement"
+ ],
+ "1909.08053": [
+  "Megatron-LM"
+ ],
+ "2212.10560": [
+  "Self-Instruct"
+ ],
+ "2001.08361": [
+  "Scaling Laws for Neural Language Models"
+ ],
+ "2302.12173": [
+  "Indirect Prompt Injection"
+ ],
+ "2307.02483": [
+  "Jailbroken"
+ ],
+ "2402.13228": [
+  "Smaug"
+ ],
+ "doi:10.1561/1500000019": [
+  "BM25"
+ ],
+ "doi:10.1145/1571941.1572114": [
+  "Reciprocal rank fusion"
+ ],
+ "doi:10.1109/SEQUEN.1997.666900": [
+  "resemblance and containment"
+ ]
+}
