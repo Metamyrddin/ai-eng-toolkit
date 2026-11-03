@@ -1,0 +1,614 @@
+{
+ "https://aclanthology.org/P18-1128/": {
+  "status": "200",
+  "files": [
+   "05_evals_rigor/README.md",
+   "05_evals_rigor/stats_utils.py"
+  ]
+ },
+ "https://api.crossref.org/works/": {
+  "status": "200",
+  "files": [
+   "tools/check_urls.py"
+  ]
+ },
+ "https://arxiv.org/abs/1702.08734": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1710.03740": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1803.05457": {
+  "status": "200",
+  "files": [
+   "05_evals_rigor/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1805.02867": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1909.08053": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1910.02054": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1910.10683": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/1911.00359": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2005.11401": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2005.14165": {
+  "status": "200",
+  "files": [
+   "05_evals_rigor/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2009.01325": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2104.08663": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2106.09685": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2107.06499": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2112.11446": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2202.05262": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2203.02155": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2203.14465": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2205.14135": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2208.07339": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2210.03629": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2210.17323": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2211.00593": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2211.17192": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2302.01318": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2302.12173": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2303.08112": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md",
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2304.11277": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2305.14314": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md",
+   "04_post_training/cloud/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2305.18290": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2306.00978": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2307.02483": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2307.08691": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2307.15043": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md",
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2308.01825": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2309.06180": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2402.04249": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md",
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2402.13228": {
+  "status": "200",
+  "files": [
+   "04_post_training/NOTES.md",
+   "04_post_training/RESULTS.md"
+  ]
+ },
+ "https://arxiv.org/abs/2404.15255": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2406.10229": {
+  "status": "200",
+  "files": [
+   "05_evals_rigor/README.md"
+  ]
+ },
+ "https://arxiv.org/abs/2406.17557": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/README.md",
+   "06_data_engineering/cloud/README.md"
+  ]
+ },
+ "https://docs.nvidia.com/nsight-systems/UserGuide/index.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/cloud/README.md"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/amp.html": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md",
+   "03_distributed_training/mixed_precision_demo.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/distributed.fsdp.fully_shard.html": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md",
+   "03_distributed_training/fsdp_cpu.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/distributed.html": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md",
+   "03_distributed_training/collectives_demo.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/elastic/run.html": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/cloud/README.md",
+   "03_distributed_training/cloud/torchrun_multi_node.sh",
+   "03_distributed_training/cloud/torchrun_single_node.sh"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/generated/torch.compile.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md",
+   "02_gpu_systems_perf/compile_bench.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/generated/torch.nn.attention.sdpa_kernel.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/sdpa_backends.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md",
+   "02_gpu_systems_perf/sdpa_backends.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md",
+   "03_distributed_training/ddp_cpu.py"
+  ]
+ },
+ "https://docs.pytorch.org/docs/stable/profiler.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md",
+   "02_gpu_systems_perf/profile_torch.py"
+  ]
+ },
+ "https://docs.vllm.ai/en/latest/cli/serve/": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md",
+   "01_inference_serving/cloud/README.md",
+   "01_inference_serving/cloud/vllm_serve.sh"
+  ]
+ },
+ "https://docs.vllm.ai/en/latest/features/speculative_decoding/": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md",
+   "01_inference_serving/cloud/README.md",
+   "01_inference_serving/cloud/vllm_serve_speculative.sh"
+  ]
+ },
+ "https://docs.vllm.ai/en/latest/features/tool_calling/": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/cloud/README.md"
+  ]
+ },
+ "https://docs.vllm.ai/en/latest/getting_started/installation/": {
+  "status": "200",
+  "files": [
+   "requirements-gpu.txt"
+  ]
+ },
+ "https://docs.vllm.ai/en/latest/serving/offline_inference/": {
+  "status": "200",
+  "files": [
+   "04_post_training/cloud/README.md",
+   "04_post_training/cloud/vllm_synthetic_data.py"
+  ]
+ },
+ "https://docs.vllm.ai/en/latest/serving/openai_compatible_server/": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/cloud/README.md"
+  ]
+ },
+ "https://doi.org/10.1109/SEQUEN.1997.666900": {
+  "status": "200",
+  "via": "crossref",
+  "title": "On the resemblance and containment of documents",
+  "title_check": "ok",
+  "files": [
+   "06_data_engineering/README.md"
+  ]
+ },
+ "https://doi.org/10.1145/1571941.1572114": {
+  "status": "200",
+  "via": "crossref",
+  "title": "Reciprocal rank fusion outperforms condorcet and individual rank learning methods",
+  "title_check": "ok",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://doi.org/10.1561/1500000019": {
+  "status": "200",
+  "via": "crossref",
+  "title": "The Probabilistic Relevance Framework: BM25 and Beyond",
+  "title_check": "ok",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://github.com/AlignmentResearch/tuned-lens": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://github.com/Dao-AILab/flash-attention": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/cloud/README.md",
+   "requirements-gpu.txt"
+  ]
+ },
+ "https://github.com/EleutherAI/lm-evaluation-harness": {
+  "status": "200",
+  "files": [
+   "05_evals_rigor/README.md",
+   "05_evals_rigor/eval_harness.py"
+  ]
+ },
+ "https://github.com/EleutherAI/lm-evaluation-harness#basic-usage": {
+  "status": "200",
+  "files": [
+   "05_evals_rigor/cloud/README.md"
+  ]
+ },
+ "https://github.com/TransformerLensOrg/TransformerLens": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://github.com/centerforaisafety/HarmBench": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://github.com/facebookresearch/faiss": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://github.com/ggml-org/llama.cpp/releases": {
+  "status": "200",
+  "files": [
+   "tools/get_llamacpp.sh"
+  ]
+ },
+ "https://github.com/huggingface/datatrove": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/cloud/README.md"
+  ]
+ },
+ "https://huggingface.co/datasets/HuggingFaceFW/fineweb": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/fetch_sample.py"
+  ]
+ },
+ "https://huggingface.co/docs/accelerate": {
+  "status": "200",
+  "files": [
+   "04_post_training/cloud/README.md"
+  ]
+ },
+ "https://huggingface.co/docs/accelerate/usage_guides/fsdp": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md",
+   "03_distributed_training/cloud/README.md",
+   "03_distributed_training/cloud/accelerate_fsdp_config.yaml"
+  ]
+ },
+ "https://huggingface.co/docs/datasets/stream": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/README.md",
+   "06_data_engineering/streaming_pipeline.py"
+  ]
+ },
+ "https://huggingface.co/docs/datasets/stream#split-dataset": {
+  "status": "200",
+  "files": [
+   "06_data_engineering/cloud/README.md"
+  ]
+ },
+ "https://huggingface.co/docs/peft": {
+  "status": "200",
+  "files": [
+   "04_post_training/cloud/README.md"
+  ]
+ },
+ "https://huggingface.co/docs/peft/index": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md",
+   "04_post_training/sft_lora.py"
+  ]
+ },
+ "https://huggingface.co/docs/transformers/generation_strategies#speculative-decoding": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ },
+ "https://huggingface.co/docs/trl/clis": {
+  "status": "200",
+  "files": [
+   "04_post_training/cloud/README.md"
+  ]
+ },
+ "https://huggingface.co/docs/trl/dpo_trainer": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md",
+   "04_post_training/dpo_tiny.py"
+  ]
+ },
+ "https://huggingface.co/docs/trl/reward_trainer": {
+  "status": "200",
+  "files": [
+   "04_post_training/reward_model_sketch.py"
+  ]
+ },
+ "https://huggingface.co/docs/trl/sft_trainer": {
+  "status": "200",
+  "files": [
+   "04_post_training/README.md",
+   "04_post_training/sft_lora.py"
+  ]
+ },
+ "https://nnsight.net/": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/cloud/README.md"
+  ]
+ },
+ "https://pytorch.org/get-started/locally/": {
+  "status": "200",
+  "files": [
+   "README.md",
+   "requirements-gpu.txt"
+  ]
+ },
+ "https://qwen.readthedocs.io/en/latest/framework/function_call.html": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md",
+   "07_rag_agents/agent_loop.py"
+  ]
+ },
+ "https://sbert.net": {
+  "status": "200",
+  "files": [
+   "07_rag_agents/README.md"
+  ]
+ },
+ "https://triton-lang.org/main/getting-started/tutorials/index.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md",
+   "02_gpu_systems_perf/triton_kernels.py"
+  ]
+ },
+ "https://triton-lang.org/main/programming-guide/chapter-3/debugging.html": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md",
+   "02_gpu_systems_perf/triton_kernels.py"
+  ]
+ },
+ "https://ui.perfetto.dev": {
+  "status": "200",
+  "files": [
+   "02_gpu_systems_perf/README.md",
+   "02_gpu_systems_perf/RESULTS.md",
+   "02_gpu_systems_perf/profile_torch.py",
+   "tools/make_results.py"
+  ]
+ },
+ "https://www.deepspeed.ai/docs/config-json/": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/README.md",
+   "03_distributed_training/cloud/README.md",
+   "03_distributed_training/cloud/deepspeed_launch.sh"
+  ]
+ },
+ "https://www.deepspeed.ai/getting-started/": {
+  "status": "200",
+  "files": [
+   "03_distributed_training/cloud/deepspeed_launch.sh"
+  ]
+ },
+ "https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens": {
+  "status": "200",
+  "files": [
+   "08_safety_interp/README.md",
+   "08_safety_interp/logit_lens.py"
+  ]
+ },
+ "https://www.usenix.org/conference/osdi22/presentation/yu": {
+  "status": "200",
+  "files": [
+   "01_inference_serving/README.md"
+  ]
+ }
+}
