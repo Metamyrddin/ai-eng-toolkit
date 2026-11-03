@@ -1,0 +1,46 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:55:20 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "device": "cpu",
+  "dtype": "float32",
+  "seq": 1024,
+  "heads": 8,
+  "head_dim": 64,
+  "backends": {
+    "MATH": {
+      "available": true,
+      "ms_median": 12.225,
+      "max_abs_err_vs_fp64_math": 7.809259041646754e-07
+    },
+    "FLASH_ATTENTION": {
+      "available": true,
+      "ms_median": 1.313,
+      "max_abs_err_vs_fp64_math": 6.988038006028319e-07
+    },
+    "EFFICIENT_ATTENTION": {
+      "available": false,
+      "reason": "RuntimeError: No viable backend for scaled_dot_product_attention was found. This is likely due to turning off both the math kernel and the fused kernels."
+    },
+    "CUDNN_ATTENTION": {
+      "available": false,
+      "reason": "RuntimeError: No viable backend for scaled_dot_product_attention was found. This is likely due to turning off both the math kernel and the fused kernels."
+    }
+  }
+}

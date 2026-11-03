@@ -1,0 +1,26 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:55:26 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "mode": "TRITON_INTERPRET=1 (CPU)",
+  "add_max_abs_err": 0.0,
+  "softmax_max_abs_err": 1.1920928955078125e-07,
+  "matmul_max_abs_err": 5.7220458984375e-06,
+  "matmul_max_rel_err": 0.00011148359044454992
+}
