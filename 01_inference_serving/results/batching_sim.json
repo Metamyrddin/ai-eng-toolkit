@@ -1,0 +1,28 @@
+{
+  "kind": "SIMULATION (not a real-server measurement)",
+  "args": {
+    "n": 200,
+    "max_batch": 8,
+    "a": 15.0,
+    "b": 1.0,
+    "arrival_rate": 0.004,
+    "seed": 0,
+    "out": "/workspace/ai-eng-toolkit/01_inference_serving/results/batching_sim.json"
+  },
+  "modes": {
+    "static": {
+      "mean_latency_ms": 1464.0,
+      "p95_latency_ms": 3448.6,
+      "makespan_ms": 51608.2,
+      "useful_tokens": 4861,
+      "throughput_tok_per_s": 94.2
+    },
+    "continuous": {
+      "mean_latency_ms": 432.6,
+      "p95_latency_ms": 1127.0,
+      "makespan_ms": 51034.2,
+      "useful_tokens": 4861,
+      "throughput_tok_per_s": 95.2
+    }
+  }
+}
