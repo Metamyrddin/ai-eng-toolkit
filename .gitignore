@@ -1,0 +1,52 @@
+# This file lists things that Git must NOT upload to GitHub.
+
+# The Python virtual environment is rebuilt by setup.sh, so it is never uploaded.
+.venv/
+venv/
+
+# Downloaded models and datasets (large) and downloaded program files are fetched again by tools/download_models.py.
+.hf_cache/
+.bin/
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# Training outputs, cached embeddings and sampled data are re-created by the scripts.
+04_post_training/outputs/
+06_data_engineering/data/shards/
+06_data_engineering/data/fineweb_sample.jsonl
+07_rag_agents/cache/
+*.npy
+
+# Python and test caches.
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Notebooks generated for your own GitHub and Kaggle names (re-create them with tools/gpu/make_notebooks.py).
+tools/gpu/generated/
+tools/gpu/results/kaggle_*/
+
+# Secrets must never be uploaded: Kaggle tokens, environment files, keys.
+kaggle.json
+access_token
+.env
+.env.*
+*.pem
+*.key
+.kaggle/
+
+# Operating-system clutter.
+.DS_Store
+Thumbs.db
+
+# Safety net: any single file larger than 50 MB must not be committed by accident.
+# (Git itself cannot filter by size, so tools/publish_github.sh checks file sizes before committing.)
+
+# The raw profiler trace is 38 MB; only the compressed copy (profile_trace.json.gz) is committed.
+02_gpu_systems_perf/results/profile_trace.json
+02_gpu_systems_perf/results/profile_trace.json.gz
