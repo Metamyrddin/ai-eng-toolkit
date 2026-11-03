@@ -1,0 +1,628 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:45:46 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "n_queries": 30,
+  "k_ctx": 3,
+  "seconds": 88.6,
+  "context_recall@k": 0.733,
+  "citation_rate": 0.6,
+  "citation_validity": 1.0,
+  "n_citations": 29,
+  "cites_gold_rate": 0.367,
+  "samples": [
+    {
+      "qid": "1",
+      "claim": "0-dimensional biomaterials show inductive properties.",
+      "answer": "The claim \"0-dimensional biomaterials show inductive properties\" is not addressed by the provided documents. The documents discuss various aspects of stem cell properties, including EMT, claudin-low breast tumors, and superresolution imaging techniques. There is no mention of 0-dimensional biomaterials or their properties. Therefore, the claim cannot be supported by the given documents.",
+      "context_ids": [
+        "43385013",
+        "6863070",
+        "393001"
+      ],
+      "cited": [],
+      "ctx_has_gold": false,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "3",
+      "claim": "1,000 genomes project enables mapping of genetic sequence variation consisting of rare variants with larger penetrance effects than common variants.",
+      "answer": "The claim \"1,000 genomes project enables mapping of genetic sequence variation consisting of rare variants with larger penetrance effects than common variants\" does not address the claim in the provided documents. The documents discuss the mapping of common variants, their replication, and the use of pooled next-generation sequencing to investigate the role of rare genetic variation in common disease. They do not mention 1,000 genomes projects or their ability to map rare variants with larger penetrance effects than common variants. Therefore, the claim is not supported by the provided documents.",
+      "context_ids": [
+        "14717500",
+        "4414547",
+        "4632921"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "5",
+      "claim": "1/2000 in UK have abnormal PrP positivity.",
+      "answer": "[13734012] Prevalent abnormal prion protein in human appendixes after bovine spongiform encephalopathy epizootic: large scale survey. The claim \"1/2000 in UK have abnormal PrP positivity\" is not addressed in the provided documents. The documents discuss the prevalence of prion protein in human appendixes after bovine spongiform encephalopathy epizootic, but do not provide information about the UK population or the prevalence of abnormal prion protein in the UK. Therefore, the claim cannot be supported by the documents.",
+      "context_ids": [
+        "13734012",
+        "18617259",
+        "3413083"
+      ],
+      "cited": [
+        "13734012"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": true
+    },
+    {
+      "qid": "13",
+      "claim": "5% of perinatal mortality is due to low birth weight.",
+      "answer": "The claim \"5% of perinatal mortality is due to low birth weight\" does not address the claim \"5% of perinatal mortality is due to low birth weight.\" The claim is about the proportion of perinatal mortality that is due to low birth weight, which is not supported by the documents provided. The claim is irrelevant to the content of the documents. Therefore, the supporting document id is [1263446].",
+      "context_ids": [
+        "1263446",
+        "25182647",
+        "17450673"
+      ],
+      "cited": [
+        "1263446"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "36",
+      "claim": "A deficiency of vitamin B12 increases blood levels of homocysteine.",
+      "answer": "The claim \"A deficiency of vitamin B12 increases blood levels of homocysteine\" does not address the claim in the provided documents. The claim is about the relationship between vitamin B12 deficiency and homocysteine levels, which is not supported by the documents. Therefore, the supporting documents do not address the claim. The relevant documents are:\n\n[33409100] Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial.. CONTEXT High plasma homocysteine levels are a risk factor for mortality and vascular disease in observational studies of patients with chronic kidney disease. Folic acid and B vitamins decrease homocysteine levels in this population but whether they",
+      "context_ids": [
+        "33409100",
+        "18557974",
+        "37424881"
+      ],
+      "cited": [
+        "33409100"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "42",
+      "claim": "A high microerythrocyte count raises vulnerability to severe anemia in homozygous alpha (+)- thalassemia trait subjects.",
+      "answer": "The claim \"A high microerythrocyte count raises vulnerability to severe anemia in homozygous \u03b1+-thalassemia trait subjects\" does not address the claim in the provided documents. The claim is about the relationship between microcytosis and anemia in homozygous \u03b1+-thalassemia trait subjects, which is not supported by the documents. Therefore, the supporting documents do not address the claim. The relevant document is [18174210].",
+      "context_ids": [
+        "18174210",
+        "40913091",
+        "27889071"
+      ],
+      "cited": [
+        "18174210"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": true
+    }
+  ],
+  "all_rows": [
+    {
+      "qid": "1",
+      "claim": "0-dimensional biomaterials show inductive properties.",
+      "answer": "The claim \"0-dimensional biomaterials show inductive properties\" is not addressed by the provided documents. The documents discuss various aspects of stem cell properties, including EMT, claudin-low breast tumors, and superresolution imaging techniques. There is no mention of 0-dimensional biomaterials or their properties. Therefore, the claim cannot be supported by the given documents.",
+      "context_ids": [
+        "43385013",
+        "6863070",
+        "393001"
+      ],
+      "cited": [],
+      "ctx_has_gold": false,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "3",
+      "claim": "1,000 genomes project enables mapping of genetic sequence variation consisting of rare variants with larger penetrance effects than common variants.",
+      "answer": "The claim \"1,000 genomes project enables mapping of genetic sequence variation consisting of rare variants with larger penetrance effects than common variants\" does not address the claim in the provided documents. The documents discuss the mapping of common variants, their replication, and the use of pooled next-generation sequencing to investigate the role of rare genetic variation in common disease. They do not mention 1,000 genomes projects or their ability to map rare variants with larger penetrance effects than common variants. Therefore, the claim is not supported by the provided documents.",
+      "context_ids": [
+        "14717500",
+        "4414547",
+        "4632921"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "5",
+      "claim": "1/2000 in UK have abnormal PrP positivity.",
+      "answer": "[13734012] Prevalent abnormal prion protein in human appendixes after bovine spongiform encephalopathy epizootic: large scale survey. The claim \"1/2000 in UK have abnormal PrP positivity\" is not addressed in the provided documents. The documents discuss the prevalence of prion protein in human appendixes after bovine spongiform encephalopathy epizootic, but do not provide information about the UK population or the prevalence of abnormal prion protein in the UK. Therefore, the claim cannot be supported by the documents.",
+      "context_ids": [
+        "13734012",
+        "18617259",
+        "3413083"
+      ],
+      "cited": [
+        "13734012"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": true
+    },
+    {
+      "qid": "13",
+      "claim": "5% of perinatal mortality is due to low birth weight.",
+      "answer": "The claim \"5% of perinatal mortality is due to low birth weight\" does not address the claim \"5% of perinatal mortality is due to low birth weight.\" The claim is about the proportion of perinatal mortality that is due to low birth weight, which is not supported by the documents provided. The claim is irrelevant to the content of the documents. Therefore, the supporting document id is [1263446].",
+      "context_ids": [
+        "1263446",
+        "25182647",
+        "17450673"
+      ],
+      "cited": [
+        "1263446"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "36",
+      "claim": "A deficiency of vitamin B12 increases blood levels of homocysteine.",
+      "answer": "The claim \"A deficiency of vitamin B12 increases blood levels of homocysteine\" does not address the claim in the provided documents. The claim is about the relationship between vitamin B12 deficiency and homocysteine levels, which is not supported by the documents. Therefore, the supporting documents do not address the claim. The relevant documents are:\n\n[33409100] Effect of homocysteine lowering on mortality and vascular disease in advanced chronic kidney disease and end-stage renal disease: a randomized controlled trial.. CONTEXT High plasma homocysteine levels are a risk factor for mortality and vascular disease in observational studies of patients with chronic kidney disease. Folic acid and B vitamins decrease homocysteine levels in this population but whether they",
+      "context_ids": [
+        "33409100",
+        "18557974",
+        "37424881"
+      ],
+      "cited": [
+        "33409100"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "42",
+      "claim": "A high microerythrocyte count raises vulnerability to severe anemia in homozygous alpha (+)- thalassemia trait subjects.",
+      "answer": "The claim \"A high microerythrocyte count raises vulnerability to severe anemia in homozygous \u03b1+-thalassemia trait subjects\" does not address the claim in the provided documents. The claim is about the relationship between microcytosis and anemia in homozygous \u03b1+-thalassemia trait subjects, which is not supported by the documents. Therefore, the supporting documents do not address the claim. The relevant document is [18174210].",
+      "context_ids": [
+        "18174210",
+        "40913091",
+        "27889071"
+      ],
+      "cited": [
+        "18174210"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": true
+    },
+    {
+      "qid": "48",
+      "claim": "A total of 1,000 people in the UK are asymptomatic carriers of vCJD infection.",
+      "answer": "The claim \"A total of 1,000 people in the UK are asymptomatic carriers of vCJD infection\" does not address the claim in the provided documents. The documents discuss a case of vCJD in a patient who died from a non-neurological disorder 5 years after receiving a blood transfusion from a donor who subsequently developed vCJD. The claim is about the prevalence of vCJD infection in the UK, which is not addressed in the provided documents. Therefore, the supporting document id is not relevant to the claim.",
+      "context_ids": [
+        "18617259",
+        "11349166",
+        "13734012"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "49",
+      "claim": "ADAR1 binds to Dicer to cleave pre-miRNA.",
+      "answer": "The claim \"ADAR1 binds to Dicer to cleave pre-miRNA\" is supported by the document [5953485]. The study [5953485] explicitly mentions that ADAR1 forms a complex with Dicer through direct protein-protein interaction. The document [5953485] is cited in the claim as supporting the claim, as it provides the relevant information about the interaction between ADAR1 and Dicer.",
+      "context_ids": [
+        "5953485",
+        "5702790",
+        "23913146"
+      ],
+      "cited": [
+        "5953485",
+        "5953485",
+        "5953485"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 3,
+      "n_cited_valid": 3,
+      "cites_gold": true
+    },
+    {
+      "qid": "50",
+      "claim": "AIRE is expressed in some skin tumors.",
+      "answer": "The claim \"AIRE is expressed in some skin tumors\" is supported by the document [12580014]. The relevant sentence is: \"We report that autoimmune regulator (Aire), a transcriptional regulator, is inducibly expressed in human and mouse tumor keratinocytes in a K17-dependent manner and is required for timely onset of Gli2-induced skin tumorigenesis in mice.\" This supports the claim by indicating that AIRE is indeed expressed in some skin tumors.",
+      "context_ids": [
+        "12580014",
+        "25738896",
+        "39559521"
+      ],
+      "cited": [
+        "12580014"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": true
+    },
+    {
+      "qid": "51",
+      "claim": "ALDH1 expression is associated with better breast cancer outcomes.",
+      "answer": "The claim \"ALDH1 expression is associated with better breast cancer outcomes\" does not address the claim in the provided documents. The documents discuss the relationship between PD-L1 expression and clinical outcomes in various cancers, including breast cancer, but do not specifically address ALDH1 expression. Therefore, the supporting document id is not relevant to the claim.",
+      "context_ids": [
+        "8963413",
+        "45638119",
+        "21439640"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "53",
+      "claim": "ALDH1 expression is associated with poorer prognosis in breast cancer.",
+      "answer": "[45638119] ALDH1 is a marker of normal and malignant human mammary stem cells and a predictor of poor clinical outcome.. Application of stem cell biology to breast cancer research has been limited by the lack of simple methods for identification and isolation of normal and malignant stem cells. Utilizing in vitro and in vivo experimental systems, we show that normal and cancer human mammary epithelial cells with increased aldehyde dehydrogenase activity (ALDH) have stem/progenitor properties. These cells contain the subpopulation of normal breast epithelium with the broadest lineage differentiation potential and greatest growth capacity in a xenotransplant model. In breast carcinomas, high ALDH activit\n\n[8963413] PD-L1 expression in",
+      "context_ids": [
+        "45638119",
+        "8963413",
+        "21439640"
+      ],
+      "cited": [
+        "45638119",
+        "8963413"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 2,
+      "n_cited_valid": 2,
+      "cites_gold": true
+    },
+    {
+      "qid": "54",
+      "claim": "AMP-activated protein kinase (AMPK) activation increases inflammation-related fibrosis in the lungs.",
+      "answer": "The claim \"AMP-activated protein kinase (AMPK) activation increases inflammation-related fibrosis in the lungs\" does not address the claim \"AMP-activated protein kinase (AMPK) activation rapidly inhibited the Janus kinase (JAK)\u2013signal transducer and activator of transcription (STAT) pathway in various cells.\" The supporting document id for the claim \"AMP-activated protein kinase (AMPK) activation rapidly inhibited the Janus kinase (JAK)\u2013signal transducer and activator of transcription (STAT) pathway in various cells\" is [3973445].",
+      "context_ids": [
+        "3973445",
+        "23974474",
+        "1590744"
+      ],
+      "cited": [
+        "3973445"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "56",
+      "claim": "APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation causing GABA neuron degeneration.",
+      "answer": "The claim \"APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation causing GABA neuron degeneration\" does not address the claim in the provided documents. The claim is about the effects of APOE4 expression on tau phosphorylation in human iPSC-derived neurons, which is not supported by the documents. The supporting documents [4709641] and [22185730] do not address the claim, while [4345605] provides information about the control of GABA circuitry development by Nrg1 and ErbB4 signalling, which is unrelated to the claim. Therefore, the claim is not supported by the provided documents.",
+      "context_ids": [
+        "4709641",
+        "22185730",
+        "4345605"
+      ],
+      "cited": [
+        "4709641",
+        "22185730",
+        "4345605"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 3,
+      "n_cited_valid": 3,
+      "cites_gold": true
+    },
+    {
+      "qid": "57",
+      "claim": "APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation, delaying GABA neuron degeneration.",
+      "answer": "The claim \"APOE4 expression in iPSC-derived neurons increases AlphaBeta production and tau phosphorylation, delaying GABA neuron degeneration\" does not address the claim in the provided documents. The documents discuss the effects of ApoE4 expression on human iPSC-derived neurons, specifically focusing on the role of ApoE4 in Alzheimer's disease (AD) and the effects of PP2A on tau phosphorylation. The claim is not supported by the documents and does not address the claim in the provided documents. Therefore, the supporting document id is not relevant.",
+      "context_ids": [
+        "4709641",
+        "22185730",
+        "35520219"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "70",
+      "claim": "Activation of PPM1D suppresses p53 function.",
+      "answer": "The claim \"Activation of PPM1D suppresses p53 function\" is not addressed in the provided documents. The relevant document is [21307488] HER-2/neu induces p53 ubiquitination via Akt-mediated MDM2 phosphorylation. This document does not discuss the role of PPM1D in regulating p53 function. Therefore, it does not support the claim.",
+      "context_ids": [
+        "21307488",
+        "6896063",
+        "21557055"
+      ],
+      "cited": [
+        "21307488"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "72",
+      "claim": "Activator-inhibitor pairs are provided dorsally by Admpchordin.",
+      "answer": "The claim \"Activator-inhibitor pairs are provided dorsally by Admp-chromatin\" does not address the claim in question. The claim is about the relationship between chromatin structure and gene expression, while the claim in question is about the relationship between chromatin structure and gene expression in the Spemann organizer. Therefore, the supporting document id for the claim \"Activator-inhibitor pairs are provided dorsally by Admp-chromatin\" is [18895793].",
+      "context_ids": [
+        "6076903",
+        "18895793",
+        "14492964"
+      ],
+      "cited": [
+        "18895793"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "75",
+      "claim": "Active H. pylori urease has a polymeric structure that compromises two subunits, UreA and UreB.",
+      "answer": "The claim \"Active H. pylori urease has a polymeric structure that compromises two subunits, UreA and UreB\" does not address the claim in the provided documents. The documents discuss the structure of the proton-gated urea channel from Helicobacter pylori, which is crucial for the survival of the organism in the acidic environment of the stomach. They do not mention urease apoprotein complexes containing UreD, UreF, and UreG, nor do they discuss the prophylactic and therapeutic efficacy of the epitope vaccine CTB-UA against H. pylori infection. Therefore, the claim cannot be addressed by the provided documents.",
+      "context_ids": [
+        "4387784",
+        "37768883",
+        "13965483"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "94",
+      "claim": "Albendazole is used to treat lymphatic filariasis.",
+      "answer": "The claim \"Albendazole is used to treat lymphatic filariasis\" is not addressed in the provided documents. The claim is not supported by any of the documents, and it is not relevant to the content of the documents. Therefore, I cannot provide a 2 sentence answer citing the supporting documents ids.",
+      "context_ids": [
+        "39424916",
+        "3935126",
+        "20428155"
+      ],
+      "cited": [],
+      "ctx_has_gold": false,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "99",
+      "claim": "Alizarin forms hydrogen bonds with residues involved in PGAM1 substrate binding.",
+      "answer": "The claim \"Alizarin forms hydrogen bonds with residues involved in PGAM1 substrate binding\" does not address the claim in the given documents. The claim is about the structure of alizarin and its interaction with residues involved in PGAM1 substrate binding, which is not supported by the documents. Therefore, the supporting document id is not relevant to the claim.",
+      "context_ids": [
+        "18810195",
+        "12225214",
+        "30208015"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "100",
+      "claim": "All hematopoietic stem cells segregate their chromosomes randomly.",
+      "answer": "The claim \"All hematopoietic stem cells segregate their chromosomes randomly\" does not address the claim in the provided documents. The documents discuss the segregation of chromosomes in hematopoietic stem cells, but they do not support or contradict the claim about random segregation. Therefore, the supporting document id is not relevant to the claim in this context.",
+      "context_ids": [
+        "4381486",
+        "14550841",
+        "30714190"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "113",
+      "claim": "Angiotensin converting enzyme inhibitors are associated with increased risk for functional renal insufficiency.",
+      "answer": "The claim \"Angiotensin converting enzyme inhibitors are associated with increased risk for functional renal insufficiency\" does not address the claim \"Angiotensin converting enzyme inhibitors are associated with increased risk for functional renal insufficiency.\" The claim is not supported by the documents, as it is not mentioned in the provided documents. Therefore, I cannot provide a 2-sentence answer citing the supporting documents ids.",
+      "context_ids": [
+        "6157837",
+        "1759213",
+        "25816994"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "115",
+      "claim": "Anthrax spores can be disposed of easily after they are dispersed.",
+      "answer": "[33872649] Secondary aerosolization of viable Bacillus anthracis spores in a contaminated US Senate Office. The claim \"Anthrax spores can be disposed of easily after they are dispersed\" does not address the claim in the provided documents. The documents discuss the secondary aerosolization of Bacillus anthracis spores in a contaminated US Senate Office, but do not provide information about the ease of disposal of anthrax spores after they are dispersed. Therefore, the supporting document id is [33872649].",
+      "context_ids": [
+        "33872649",
+        "1631583",
+        "19756935"
+      ],
+      "cited": [
+        "33872649",
+        "33872649"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 2,
+      "n_cited_valid": 2,
+      "cites_gold": true
+    },
+    {
+      "qid": "118",
+      "claim": "Antibiotic induced alterations in the gut microbiome reduce resistance against Clostridium difficile",
+      "answer": "The claim \"Antibiotic induced alterations in the gut microbiome reduce resistance against Clostridium difficile\" is supported by the documents [6372244] and [4465735]. The first document [6372244] shows that antibiotic treatment induces substantial changes in the gut microbiome and in the metabolome of mice susceptible to C. difficile infection. The second document [4465735] provides a correlation between loss of specific gut bacteria and the development of experimental autoimmune encephalomyelitis (EAE), which is a condition caused by Clostridium difficile infection. The first document supports the claim by showing that antibiotic treatment reduces the gut microbiome and in the metabolome of mice susceptible to C",
+      "context_ids": [
+        "6372244",
+        "4465735",
+        "32454714"
+      ],
+      "cited": [
+        "6372244",
+        "4465735",
+        "6372244",
+        "4465735"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 4,
+      "n_cited_valid": 4,
+      "cites_gold": true
+    },
+    {
+      "qid": "124",
+      "claim": "Antiretroviral therapy reduces rates of tuberculosis across a broad range of CD4 strata.",
+      "answer": "The claim \"Antiretroviral therapy reduces rates of tuberculosis across a broad range of CD4 strata\" does not address the claim in the provided documents. The claim is about the impact of antiretroviral therapy on tuberculosis rates across different CD4 strata, which is not supported by the documents. The documents discuss the impact of antiretroviral therapy on tuberculosis rates in adults with HIV infection, but do not provide information about the impact on tuberculosis rates across different CD4 strata. Therefore, the claim is not supported by the provided documents.",
+      "context_ids": [
+        "4883040",
+        "7111021",
+        "13899137"
+      ],
+      "cited": [],
+      "ctx_has_gold": true,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "127",
+      "claim": "Arginine 90 in p150n is important for interaction with EB1.",
+      "answer": "The claim \"Arginine 90 in p150n is important for interaction with EB1\" does not address the claim in the provided documents. The documents discuss the interaction of CLIP-170 with dynactin and EB1, but do not mention the role of arginine 90 in p150n. Therefore, the supporting document id is [38623601].",
+      "context_ids": [
+        "35231675",
+        "21598000",
+        "38623601"
+      ],
+      "cited": [
+        "38623601"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "128",
+      "claim": "Arterioles have a larger lumen diameter than venules.",
+      "answer": "The claim \"Arterioles have a larger lumen diameter than venules\" does not address the claim in the provided documents. The documents discuss the role of soluble guanylate cyclase in dilator responses of the cerebral microcirculation and the hypothesis that dilatation of cerebral microvessels in response to NO is dependent on activation of sGC. There is no mention of arterioles or venules in the documents. Therefore, the supporting document id is not relevant to the claim.",
+      "context_ids": [
+        "23513718",
+        "4890578",
+        "1122279"
+      ],
+      "cited": [],
+      "ctx_has_gold": false,
+      "n_cited": 0,
+      "n_cited_valid": 0,
+      "cites_gold": false
+    },
+    {
+      "qid": "129",
+      "claim": "Articles published in open access format are less likely to be cited than traditional journals.",
+      "answer": "[27768226] Open Access Increases Citation Rate. PLoS Biology publishes today a research article by Gunther Eysenbach that is not about biology. It is about citations. It provides robust evidence that open-access articles (OA articles) are more immediately recognized and cited than non-OA articles. As such, it adds objective support to the belief we have always held that open-access publication speeds up scientific dialog between researchers and, consequently, should be extended to the whole scientific literature as quickly as possible. It is therefore fitting that we publish such a paper. We have long argued that papers freely available in a journal will be more often read and cited than those behind a\n\n[4857085] Open Babel: An open chemical toolbox.",
+      "context_ids": [
+        "27768226",
+        "4857085",
+        "10577574"
+      ],
+      "cited": [
+        "27768226",
+        "4857085"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 2,
+      "n_cited_valid": 2,
+      "cites_gold": true
+    },
+    {
+      "qid": "130",
+      "claim": "Articles published in open access format are more likely to be cited than traditional journals.",
+      "answer": "[27768226] Open Access Increases Citation Rate. PLoS Biology publishes today a research article by Gunther Eysenbach that is not about biology. It is about citations. It provides robust evidence that open-access articles (OA articles) are more immediately recognized and cited than non-OA articles. As such, it adds objective support to the belief we have always held that open-access publication speeds up scientific dialog between researchers and, consequently, should be extended to the whole scientific literature as quickly as possible. It is therefore fitting that we publish such a paper. We have long argued that papers freely available in a journal will be more often read and cited than those behind a\n\n[10577574] The impact of open versus closed format ICU",
+      "context_ids": [
+        "27768226",
+        "10577574",
+        "4857085"
+      ],
+      "cited": [
+        "27768226",
+        "10577574"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 2,
+      "n_cited_valid": 2,
+      "cites_gold": true
+    },
+    {
+      "qid": "132",
+      "claim": "Aspirin inhibits the production of PGE2.",
+      "answer": "The claim \"Aspirin inhibits the production of PGE2\" is supported by the document [3866315]. The document states that \"Aspirin therapy inhibits prostaglandin biosynthesis without directly acting on lipoxygenases, yet via acetylation of cyclooxygenase 2 (COX-2) it leads to bioactive lipoxins (LXs) epimeric at carbon 15 (15-epi-LX, also termed aspirin-triggered LX [ATL]).\" This indicates that aspirin inhibits the production of PGE2, as it acetylates COX-2, leading to the production of lipoxins.",
+      "context_ids": [
+        "2443495",
+        "3866315",
+        "9159125"
+      ],
+      "cited": [
+        "3866315"
+      ],
+      "ctx_has_gold": false,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": false
+    },
+    {
+      "qid": "133",
+      "claim": "Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",
+      "answer": "The claim \"Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src\" does not address the claim in the provided documents. The claim is about the mechanisms of invadopodia formation, which is not supported by the documents. Therefore, the supporting documents do not address the claim. The correct answer is:\n\n[12640810]",
+      "context_ids": [
+        "12640810",
+        "16280642",
+        "6969753"
+      ],
+      "cited": [
+        "12640810"
+      ],
+      "ctx_has_gold": true,
+      "n_cited": 1,
+      "n_cited_valid": 1,
+      "cites_gold": true
+    }
+  ]
+}
