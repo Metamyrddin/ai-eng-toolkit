@@ -1,0 +1,25 @@
+# STATUS (appended 2026-11-02 19:14:59 MST)
+- [19:15] All 8 areas have README.md, RESULTS.md (generated from results/*.json by tools/make_results.py), NOTES.md; top-level README.md exists.
+- [19:15] Area 5 ran: eval_arc_easy.json, ablation_shots.json, contamination.json (all real runs).
+- [19:15] check_urls: 95 urls, 1 problem (investigating).
+- [19:16] pytest (full, incl. slow 2-process jobs): 102 passed in ~31 s. Tests redirect results writes to a temp dir (AIETK_TEST_MODE) so real results are not overwritten.
+- [19:16] RESULTS.md regenerated for all 8 areas and copied to <area>/results/RESULTS.md.
+- [19:16] URL check: earlier run 95 URLs, only mmds.org (dead, 500) failed; link removed; DOIs verified via Crossref; re-check running.
+- URL re-check done: see tools/url_check_report.json
+# STATUS — new task (healthcheck, GPU runner, comments, GitHub prep, skills) started 2026-11-02 19:20:11 MST
+- [19:21] STEP 1 DONE: tools/healthcheck.py + tools/healthcheck.sh. Result: 35 of 35 checks passed in ~20 s (output saved in tools/healthcheck_last_output.txt). Added a rule: all documentation must use full sentences and simple English (parent's instruction); I will apply it to new and old docs.
+- [19:22] Step 2 started: verified Kaggle CLI docs (github.com/Kaggle/kaggle-api docs/README.md, kernels.md, kernels_metadata.md) and Colab FAQ (research.google.com/colaboratory/faq.html), Kaggle GPU docs (kaggle.com/docs/notebooks, kaggle.com/docs/efficient-gpu-usage).
+- [19:24] Step 2 progress: wrote tools/gpu/gpu_checks.py (CPU dry-run: 8 of 8 areas PASS; GPU UNTESTED), tools/gpu/make_notebooks.py (18 notebooks + 9 kaggle kernel folders, all valid JSON, code cells compile), tools/gpu/kaggle_run.sh, requirements-gpu-notebook.txt. Still to write: tools/gpu/README.md.
+- [19:25] STEP 2 DONE: tools/gpu/{gpu_checks.py,make_notebooks.py,kaggle_run.sh,README.md}; GPU paths remain UNTESTED; CPU dry run 8/8 PASS (tools/gpu/results/gpu_checks_cpu_all.json).
+- [19:25] STEP 4 DONE (prep only): .gitignore, LICENSE (MIT), tools/publish_github.sh (checks size >50MB + secret scan, then commit + 'gh repo create --push'; the upload itself NOT run: needs Ram's GitHub login and repo name). Would-be commit: 205 files, 3391813 bytes (3.4 MB). Raw 38 MB profile trace gzipped to 2.2 MB. Secret scan: nothing found. A local git repo was initialised (not committed).
+- [19:26] Step 3 in progress: function docstrings added for areas 1-2 (batch 1). Method: dump undocumented defs, write plain-English docstrings, insert with a script that changes no code line (Triton jit kernels get comments instead of docstrings so the compiler is not affected).
+- [19:27] docstrings batch 2 done (areas 3-5).
+- [19:27] docstrings batch 3 done (areas 6-7).
+- [19:30] Step 3 code comments: all Python files now have a beginner header and every function has a docstring. Behavior check after edits: pytest 102 passed in 29 s; healthcheck 35 of 35 passed. Still to do: shell/config file headers, STRUCTURE.md, GLOSSARY.md, rewrite old docs into full sentences, skill drafts.
+- [19:31] Plain-English headers added to every shell script, YAML and requirements file. Next: rewrite older docs (README, NOTES, cloud README files) in full sentences.
+- [19:32] Rewrote top-level README and all 8 cloud READMEs in full sentences.
+- [19:32] Area README files 1-8: fragment bullets, file tables and short italic taglines converted to full sentences.
+- [19:33] make_results.py wording rewritten and all RESULTS.md files regenerated from the same JSON (numbers unchanged).
+- [19:34] GLOSSARY.md (67 terms) and 8 skill drafts written in skills_drafts/. Next: STRUCTURE.md, final test run, repo size.
+- [19:36] STEP 3 AND SKILL DRAFTS DONE. STRUCTURE.md (every folder and file), GLOSSARY.md (67 terms), docstrings on every function, headers on every code and script file, old docs rewritten into full sentences. Final proof: pytest 102 passed in 28.6 s; healthcheck 35 of 35 passed in 20 s. Would-be GitHub commit: 213 files, 3,514,354 bytes (about 3.5 MB), largest file 2.2 MB, no secret patterns found. GitHub upload NOT performed (needs approval, repo name and gh login).
+- [19:39] Published to https://github.com/Metamyrddin/ai-eng-toolkit with the GitHub connector in several commits (212 text files). The binary file profile_trace.json.gz cannot go through the text-only connector, so it is left out; run profile_torch.py to recreate the trace.

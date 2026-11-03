@@ -1,0 +1,32 @@
+# This file lists the Python packages that the toolkit needs on a normal laptop without a GPU. The
+# setup scripts read it.
+#
+# More technical notes:
+# CPU / laptop requirements (the versions in requirements-lock-cpu-linux-py313.txt are what the RESULTS.md files were produced with).
+# Install torch FIRST from the CPU wheel index (smaller download, no CUDA):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# llama-cpp-python is installed separately (prebuilt wheel, no compiler needed) - see setup.sh / setup.ps1:
+#   pip install llama-cpp-python --only-binary=:all: --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+numpy>=2.0
+scipy>=1.13
+pandas>=2.2
+scikit-learn>=1.4
+matplotlib>=3.8
+psutil>=5.9
+tqdm>=4.66
+pyyaml>=6.0
+pytest>=8.0
+transformers>=5.0
+tokenizers>=0.22
+datasets>=4.0
+huggingface_hub>=1.0
+safetensors>=0.4
+accelerate>=1.0
+peft>=0.17
+trl>=1.0
+sentence-transformers>=5.0
+faiss-cpu>=1.8
+rank-bm25>=0.2.2
+datasketch>=1.6
+deepspeed>=0.17        # only used on CPU to parse/validate the JSON configs (tests/test_deepspeed_configs.py)
+triton>=3.0            # Linux only; used in INTERPRETER mode (TRITON_INTERPRET=1) - skip on Windows/macOS
