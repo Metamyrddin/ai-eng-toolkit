@@ -1,0 +1,6 @@
+## How to read these results (hand-written)
+
+* **DDP and FSDP exactness.** The distributed runs end at the same loss as single-process training on the same global batch, and the maximum parameter difference is float32 rounding level (~1e-7), with replicas bit-identical to each other. This is the correctness property that matters: data parallelism must not change the maths. FSDP stores exactly half of the parameters on each of the 2 ranks.
+* **Wall-clock seconds in these tables are not scaling results**: the model has 30 k parameters, both processes share the same CPU, and gloo uses localhost sockets. Collective timings show only that cost grows with message size.
+* **Mixed precision.** fp16's smallest normal number (6.1e-5) and range explain why a 1e-8 gradient becomes **0** without loss scaling and is recovered (to ~0.1 %) with scaling factors 1024 or 32768; bf16 recovers it without scaling but with a much coarser mantissa (`eps` column). On this CPU bf16 autocast is *slower* than fp32 for the tiny model (no bf16 tensor cores) — do not read this as a statement about GPUs.
+* **ZeRO memory model** reproduces the four numbers in Figure 1 of the ZeRO paper for the 7.5 B / 64-GPU example (also asserted in `tests/test_zero_memory.py`). It counts model states only — activations, buffers and fragmentation come on top.
