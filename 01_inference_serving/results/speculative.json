@@ -1,0 +1,84 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 17:50:04 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "target": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "draft": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "new_tokens": 48,
+  "own_impl_greedy": [
+    {
+      "gamma": 1,
+      "all_outputs_equal_target_greedy": true,
+      "acceptance_rate_mean": 0.842,
+      "tokens_per_target_call_mean": 1.842,
+      "n_prompts": 4
+    },
+    {
+      "gamma": 2,
+      "all_outputs_equal_target_greedy": true,
+      "acceptance_rate_mean": 0.818,
+      "tokens_per_target_call_mean": 2.635,
+      "n_prompts": 4
+    },
+    {
+      "gamma": 4,
+      "all_outputs_equal_target_greedy": true,
+      "acceptance_rate_mean": 0.664,
+      "tokens_per_target_call_mean": 3.658,
+      "n_prompts": 4
+    },
+    {
+      "gamma": 8,
+      "all_outputs_equal_target_greedy": true,
+      "acceptance_rate_mean": 0.521,
+      "tokens_per_target_call_mean": 5.165,
+      "n_prompts": 4
+    }
+  ],
+  "own_impl_sampling_T1": [
+    {
+      "gamma": 1,
+      "acceptance_rate_mean": 0.832,
+      "tokens_per_target_call_mean": 1.832
+    },
+    {
+      "gamma": 2,
+      "acceptance_rate_mean": 0.629,
+      "tokens_per_target_call_mean": 2.259
+    },
+    {
+      "gamma": 4,
+      "acceptance_rate_mean": 0.538,
+      "tokens_per_target_call_mean": 3.152
+    },
+    {
+      "gamma": 8,
+      "acceptance_rate_mean": 0.325,
+      "tokens_per_target_call_mean": 3.602
+    }
+  ],
+  "hf_assisted_generation": {
+    "baseline_s_median": 1.212,
+    "assisted_s_median": 1.653,
+    "speedup_median_ratio": 0.73,
+    "outputs_identical_to_baseline_greedy": true,
+    "n_runs": 12,
+    "note": "CPU, fp32, 8 threads, batch 1. A speedup <1 means the draft overhead exceeded savings on this hardware."
+  }
+}
