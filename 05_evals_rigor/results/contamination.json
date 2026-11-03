@@ -1,0 +1,82 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:51:38 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "ngram": 8,
+  "arc_test_vs_arc_train": {
+    "n_items": 500,
+    "n_judged": 499,
+    "n_too_short": 1,
+    "n_flagged": 7,
+    "flagged_pct": 1.4,
+    "flagged_idx": [
+      242,
+      270,
+      430,
+      439,
+      461,
+      474,
+      493
+    ],
+    "ngram": 8,
+    "threshold": 0.5
+  },
+  "arc_test_vs_wikitext2_train": {
+    "n_items": 500,
+    "n_judged": 499,
+    "n_too_short": 1,
+    "n_flagged": 0,
+    "flagged_pct": 0.0,
+    "flagged_idx": [],
+    "ngram": 8,
+    "threshold": 0.5
+  },
+  "selftest_by_word_corruption_rate": {
+    "0.0": {
+      "planted_items_judgeable": 249,
+      "recall": 1.0,
+      "clean_items_judgeable": 250,
+      "false_positive_rate": 0.0
+    },
+    "0.05": {
+      "planted_items_judgeable": 249,
+      "recall": 0.7952,
+      "clean_items_judgeable": 250,
+      "false_positive_rate": 0.0
+    },
+    "0.1": {
+      "planted_items_judgeable": 249,
+      "recall": 0.241,
+      "clean_items_judgeable": 250,
+      "false_positive_rate": 0.0
+    },
+    "0.2": {
+      "planted_items_judgeable": 249,
+      "recall": 0.004,
+      "clean_items_judgeable": 250,
+      "false_positive_rate": 0.0
+    },
+    "0.3": {
+      "planted_items_judgeable": 249,
+      "recall": 0.004,
+      "clean_items_judgeable": 250,
+      "false_positive_rate": 0.0
+    }
+  }
+}

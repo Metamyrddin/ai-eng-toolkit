@@ -1,0 +1,192 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:35:13 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M",
+  "n_items_per_seed": 100,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "grid": {
+    "{'shots': 0, 'metric': 'acc'}": {
+      "config": {
+        "shots": 0,
+        "metric": "acc"
+      },
+      "scores": [
+        0.69,
+        0.67,
+        0.6,
+        0.7,
+        0.6
+      ],
+      "summary": {
+        "mean": 0.652,
+        "std": 0.04868264577855234,
+        "ci": [
+          0.5915525113994651,
+          0.712447488600535
+        ],
+        "n": 5
+      }
+    },
+    "{'shots': 0, 'metric': 'acc_norm'}": {
+      "config": {
+        "shots": 0,
+        "metric": "acc_norm"
+      },
+      "scores": [
+        0.6,
+        0.61,
+        0.63,
+        0.63,
+        0.52
+      ],
+      "summary": {
+        "mean": 0.598,
+        "std": 0.0454972526643093,
+        "ci": [
+          0.5415076993495468,
+          0.6544923006504532
+        ],
+        "n": 5
+      }
+    },
+    "{'shots': 1, 'metric': 'acc'}": {
+      "config": {
+        "shots": 1,
+        "metric": "acc"
+      },
+      "scores": [
+        0.69,
+        0.72,
+        0.57,
+        0.67,
+        0.64
+      ],
+      "summary": {
+        "mean": 0.658,
+        "std": 0.05718391382198319,
+        "ci": [
+          0.5869967929308569,
+          0.7290032070691431
+        ],
+        "n": 5
+      }
+    },
+    "{'shots': 1, 'metric': 'acc_norm'}": {
+      "config": {
+        "shots": 1,
+        "metric": "acc_norm"
+      },
+      "scores": [
+        0.67,
+        0.66,
+        0.72,
+        0.65,
+        0.62
+      ],
+      "summary": {
+        "mean": 0.6639999999999999,
+        "std": 0.03646916505762093,
+        "ci": [
+          0.6187175507034013,
+          0.7092824492965986
+        ],
+        "n": 5
+      }
+    },
+    "{'shots': 3, 'metric': 'acc'}": {
+      "config": {
+        "shots": 3,
+        "metric": "acc"
+      },
+      "scores": [
+        0.69,
+        0.69,
+        0.6,
+        0.68,
+        0.67
+      ],
+      "summary": {
+        "mean": 0.666,
+        "std": 0.03781534080237807,
+        "ci": [
+          0.6190460527458813,
+          0.7129539472541188
+        ],
+        "n": 5
+      }
+    },
+    "{'shots': 3, 'metric': 'acc_norm'}": {
+      "config": {
+        "shots": 3,
+        "metric": "acc_norm"
+      },
+      "scores": [
+        0.67,
+        0.67,
+        0.68,
+        0.67,
+        0.62
+      ],
+      "summary": {
+        "mean": 0.662,
+        "std": 0.023874672772626667,
+        "ci": [
+          0.6323556783493338,
+          0.6916443216506662
+        ],
+        "n": 5
+      }
+    }
+  },
+  "paired_vs_zero_shot_acc_norm": [
+    {
+      "a": "{'shots': 1, 'metric': 'acc_norm'}",
+      "b": "{'shots': 0, 'metric': 'acc_norm'}",
+      "diff_summary": {
+        "mean": 0.06600000000000002,
+        "std": 0.0320936130717624,
+        "ci": [
+          0.02615051607651092,
+          0.10584948392348911
+        ],
+        "n": 5
+      }
+    },
+    {
+      "a": "{'shots': 3, 'metric': 'acc_norm'}",
+      "b": "{'shots': 0, 'metric': 'acc_norm'}",
+      "diff_summary": {
+        "mean": 0.06400000000000003,
+        "std": 0.023021728866442655,
+        "ci": [
+          0.03541474809012983,
+          0.09258525190987023
+        ],
+        "n": 5
+      }
+    }
+  ]
+}
