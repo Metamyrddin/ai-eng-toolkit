@@ -1,0 +1,66 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:52:25 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "finfo": {
+    "torch.float32": {
+      "max": 3.4028234663852886e+38,
+      "smallest_normal": 1.1754943508222875e-38,
+      "eps": 1.1920928955078125e-07,
+      "bits": 32
+    },
+    "torch.float16": {
+      "max": 65504.0,
+      "smallest_normal": 6.103515625e-05,
+      "eps": 0.0009765625,
+      "bits": 16
+    },
+    "torch.bfloat16": {
+      "max": 3.3895313892515355e+38,
+      "smallest_normal": 1.1754943508222875e-38,
+      "eps": 0.0078125,
+      "bits": 16
+    }
+  },
+  "fp16_underflow": {
+    "loss_scale_1": {
+      "fp16_grad_after_unscale": 0.0,
+      "true_grad": 1e-08
+    },
+    "loss_scale_1024": {
+      "fp16_grad_after_unscale": 1.0011717677116394e-08,
+      "true_grad": 1e-08
+    },
+    "loss_scale_32768": {
+      "fp16_grad_after_unscale": 1.0018993634730577e-08,
+      "true_grad": 1e-08
+    },
+    "bf16_no_scaling": {
+      "grad": 1.0011717677116394e-08,
+      "true_grad": 1e-08
+    }
+  },
+  "bf16_autocast_cpu": {
+    "loss_fp32": 4.518810272216797,
+    "loss_bf16_autocast": 4.519175052642822,
+    "abs_diff": 0.0003647804260253906,
+    "step_ms_fp32": 2.27,
+    "step_ms_bf16_autocast": 3.32
+  }
+}
