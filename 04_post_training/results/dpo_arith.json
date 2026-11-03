@@ -1,0 +1,190 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:20:41 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "base_model": "/workspace/ai-eng-toolkit/04_post_training/outputs/sft/merged",
+  "dataset": "arith",
+  "beta": 0.1,
+  "lr": 5e-05,
+  "n_pairs": 500,
+  "seed": 0,
+  "before": {
+    "accuracy": 0.565,
+    "parseable_rate": 1.0,
+    "n": 200,
+    "examples": [
+      [
+        "Question: What is 86 minus 10?\nAnswer:",
+        " 76",
+        76
+      ],
+      [
+        "Question: What is 61 minus 16?\nAnswer:",
+        " 47",
+        45
+      ],
+      [
+        "Question: What is 82 plus 82?\nAnswer:",
+        " 164",
+        164
+      ],
+      [
+        "Question: What is 82 plus 24?\nAnswer:",
+        " 106",
+        106
+      ],
+      [
+        "Question: What is 33 plus 73?\nAnswer:",
+        " 106",
+        106
+      ]
+    ]
+  },
+  "train_seconds": 57.7,
+  "log": [
+    {
+      "step": 5,
+      "loss": 0.6927,
+      "rewards/accuracies": 0.5,
+      "rewards/margins": 0.0011,
+      "rewards/chosen": -0.0011,
+      "rewards/rejected": -0.0022
+    },
+    {
+      "step": 10,
+      "loss": 0.678,
+      "rewards/accuracies": 0.725,
+      "rewards/margins": 0.0315,
+      "rewards/chosen": -0.0086,
+      "rewards/rejected": -0.0401
+    },
+    {
+      "step": 15,
+      "loss": 0.6562,
+      "rewards/accuracies": 0.825,
+      "rewards/margins": 0.0779,
+      "rewards/chosen": -0.0081,
+      "rewards/rejected": -0.0861
+    },
+    {
+      "step": 20,
+      "loss": 0.6379,
+      "rewards/accuracies": 0.75,
+      "rewards/margins": 0.119,
+      "rewards/chosen": -0.041,
+      "rewards/rejected": -0.16
+    },
+    {
+      "step": 25,
+      "loss": 0.634,
+      "rewards/accuracies": 0.825,
+      "rewards/margins": 0.1266,
+      "rewards/chosen": -0.1005,
+      "rewards/rejected": -0.2271
+    },
+    {
+      "step": 30,
+      "loss": 0.6213,
+      "rewards/accuracies": 0.775,
+      "rewards/margins": 0.1624,
+      "rewards/chosen": -0.0803,
+      "rewards/rejected": -0.2427
+    },
+    {
+      "step": 35,
+      "loss": 0.6357,
+      "rewards/accuracies": 0.75,
+      "rewards/margins": 0.1309,
+      "rewards/chosen": -0.1101,
+      "rewards/rejected": -0.241
+    },
+    {
+      "step": 40,
+      "loss": 0.6,
+      "rewards/accuracies": 0.875,
+      "rewards/margins": 0.2213,
+      "rewards/chosen": -0.0907,
+      "rewards/rejected": -0.312
+    },
+    {
+      "step": 45,
+      "loss": 0.5792,
+      "rewards/accuracies": 0.85,
+      "rewards/margins": 0.2591,
+      "rewards/chosen": -0.0543,
+      "rewards/rejected": -0.3134
+    },
+    {
+      "step": 50,
+      "loss": 0.6028,
+      "rewards/accuracies": 0.8,
+      "rewards/margins": 0.2051,
+      "rewards/chosen": -0.0906,
+      "rewards/rejected": -0.2957
+    },
+    {
+      "step": 55,
+      "loss": 0.5441,
+      "rewards/accuracies": 0.95,
+      "rewards/margins": 0.3409,
+      "rewards/chosen": -0.1299,
+      "rewards/rejected": -0.4708
+    },
+    {
+      "step": 60,
+      "loss": 0.5789,
+      "rewards/accuracies": 0.775,
+      "rewards/margins": 0.2645,
+      "rewards/chosen": -0.1189,
+      "rewards/rejected": -0.3834
+    }
+  ],
+  "after": {
+    "accuracy": 0.5,
+    "parseable_rate": 1.0,
+    "n": 200,
+    "examples": [
+      [
+        "Question: What is 86 minus 10?\nAnswer:",
+        " 76",
+        76
+      ],
+      [
+        "Question: What is 61 minus 16?\nAnswer:",
+        " 47",
+        45
+      ],
+      [
+        "Question: What is 82 plus 82?\nAnswer:",
+        " 164",
+        164
+      ],
+      [
+        "Question: What is 82 plus 24?\nAnswer:",
+        " 106",
+        106
+      ],
+      [
+        "Question: What is 33 plus 73?\nAnswer:",
+        " 106",
+        106
+      ]
+    ]
+  }
+}
