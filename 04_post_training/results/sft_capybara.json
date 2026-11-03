@@ -1,0 +1,54 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:25:34 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "dataset": "capybara",
+  "lora_rank": 16,
+  "lr": 0.0002,
+  "epochs": 1.0,
+  "batch": 16,
+  "seed": 0,
+  "trainable_params": 4884480,
+  "total_params": 139399488,
+  "trainable_pct": 3.504,
+  "eval_loss_before": 2.2992446422576904,
+  "train_seconds": 69.5,
+  "loss_log": [
+    [
+      5,
+      2.2887
+    ],
+    [
+      10,
+      2.045
+    ]
+  ],
+  "eval_loss_after": 1.9960441589355469,
+  "loss_first_last": [
+    [
+      5,
+      2.2887
+    ],
+    [
+      10,
+      2.045
+    ]
+  ]
+}

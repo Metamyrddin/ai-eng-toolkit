@@ -1,0 +1,12 @@
+{
+  "mode": "rejection_sampling",
+  "model": "HuggingFaceTB/SmolLM2-360M",
+  "prompts": 1000,
+  "samples_per_prompt": 4,
+  "samples_total": 4000,
+  "samples_passing_verifier": 3572,
+  "sample_yield": 0.893,
+  "prompts_with_at_least_one_pass": 965,
+  "prompt_coverage": 0.965,
+  "temperature": 0.7
+}

@@ -1,0 +1,242 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:11:32 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M",
+  "dataset": "arith",
+  "lora_rank": 16,
+  "lr": 0.0002,
+  "epochs": 1.0,
+  "batch": 16,
+  "seed": 0,
+  "before": {
+    "accuracy": 0.03,
+    "parseable_rate": 1.0,
+    "n": 200,
+    "examples": [
+      [
+        "Question: What is 86 minus 10?\nAnswer:",
+        " 86 minus 1",
+        76
+      ],
+      [
+        "Question: What is 61 minus 16?\nAnswer:",
+        " 61 minus 1",
+        45
+      ],
+      [
+        "Question: What is 82 plus 82?\nAnswer:",
+        " 82 + 8",
+        164
+      ],
+      [
+        "Question: What is 82 plus 24?\nAnswer:",
+        " 82 + 2",
+        106
+      ],
+      [
+        "Question: What is 33 plus 73?\nAnswer:",
+        " 33 + 7",
+        106
+      ]
+    ]
+  },
+  "trainable_params": 4884480,
+  "total_params": 139399488,
+  "trainable_pct": 3.504,
+  "train_seconds": 109.0,
+  "loss_log": [
+    [
+      5,
+      2.6111
+    ],
+    [
+      10,
+      1.2049
+    ],
+    [
+      15,
+      0.745
+    ],
+    [
+      20,
+      0.6251
+    ],
+    [
+      25,
+      0.6598
+    ],
+    [
+      30,
+      0.5519
+    ],
+    [
+      35,
+      0.6046
+    ],
+    [
+      40,
+      0.4343
+    ],
+    [
+      45,
+      0.4437
+    ],
+    [
+      50,
+      0.4028
+    ],
+    [
+      55,
+      0.3676
+    ],
+    [
+      60,
+      0.3969
+    ],
+    [
+      65,
+      0.4208
+    ],
+    [
+      70,
+      0.3512
+    ],
+    [
+      75,
+      0.3892
+    ],
+    [
+      80,
+      0.3678
+    ],
+    [
+      85,
+      0.3119
+    ],
+    [
+      90,
+      0.3314
+    ],
+    [
+      95,
+      0.382
+    ],
+    [
+      100,
+      0.3535
+    ],
+    [
+      105,
+      0.3485
+    ],
+    [
+      110,
+      0.3535
+    ],
+    [
+      115,
+      0.3181
+    ],
+    [
+      120,
+      0.318
+    ],
+    [
+      125,
+      0.3411
+    ]
+  ],
+  "after_adapter": {
+    "accuracy": 0.565,
+    "parseable_rate": 1.0,
+    "n": 200,
+    "examples": [
+      [
+        "Question: What is 86 minus 10?\nAnswer:",
+        " 76",
+        76
+      ],
+      [
+        "Question: What is 61 minus 16?\nAnswer:",
+        " 47",
+        45
+      ],
+      [
+        "Question: What is 82 plus 82?\nAnswer:",
+        " 164",
+        164
+      ],
+      [
+        "Question: What is 82 plus 24?\nAnswer:",
+        " 106",
+        106
+      ],
+      [
+        "Question: What is 33 plus 73?\nAnswer:",
+        " 106",
+        106
+      ]
+    ]
+  },
+  "merge_max_abs_logit_diff": 6.771087646484375e-05,
+  "after_merged": {
+    "accuracy": 0.565,
+    "parseable_rate": 1.0,
+    "n": 200,
+    "examples": [
+      [
+        "Question: What is 86 minus 10?\nAnswer:",
+        " 76",
+        76
+      ],
+      [
+        "Question: What is 61 minus 16?\nAnswer:",
+        " 47",
+        45
+      ],
+      [
+        "Question: What is 82 plus 82?\nAnswer:",
+        " 164",
+        164
+      ],
+      [
+        "Question: What is 82 plus 24?\nAnswer:",
+        " 106",
+        106
+      ],
+      [
+        "Question: What is 33 plus 73?\nAnswer:",
+        " 106",
+        106
+      ]
+    ]
+  },
+  "merged_model_dir": "/workspace/ai-eng-toolkit/04_post_training/outputs/sft/merged",
+  "loss_first_last": [
+    [
+      5,
+      2.6111
+    ],
+    [
+      125,
+      0.3411
+    ]
+  ]
+}
