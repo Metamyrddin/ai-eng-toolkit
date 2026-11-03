@@ -1,0 +1,41 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:36:48 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "seen": 3100,
+  "dropped_quality": 37,
+  "dropped_duplicate": 98,
+  "kept": 2965,
+  "tokens_kept": 2130097,
+  "fail_reasons": {
+    "alpha_words": 13,
+    "word_count": 24,
+    "all_caps": 1
+  },
+  "rows": 4160,
+  "seq_len": 512,
+  "shards": 17,
+  "seconds": 7.0,
+  "docs_per_s": 445.3,
+  "tokens_per_s": 305991.0,
+  "peak_rss_mb": 647.0,
+  "planted_exact_dups": 100,
+  "source": "cache",
+  "roundtrip_ok": true
+}

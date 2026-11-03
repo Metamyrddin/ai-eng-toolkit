@@ -1,0 +1,62 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 18:35:23 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "n_original_docs": 1490,
+  "n_planted": 150,
+  "n": 1500,
+  "planted": 150,
+  "threshold": 0.8,
+  "num_perm": 128,
+  "seed": 0,
+  "out": "/workspace/ai-eng-toolkit/06_data_engineering/results/minhash.json",
+  "signature_estimate_error": {
+    "mean_error(bias)": -0.0006386923028824017,
+    "std_error": 0.03487816393842677,
+    "theory_std_at_J0.5": 0.04419417382415922,
+    "n_pairs": 150
+  },
+  "exact_jaccard_by_edit_rate": {
+    "0.01": 0.907,
+    "0.03": 0.75,
+    "0.05": 0.659,
+    "0.1": 0.41,
+    "0.2": 0.185
+  },
+  "own_implementation": {
+    "docs_removed": 33,
+    "planted_pairs_above_threshold": 42,
+    "recall_on_planted_above_threshold": 0.7381,
+    "removed_docs_not_verified_as_similar(exact_J<thr-0.15)": 0,
+    "seconds": 1.35,
+    "bands": 9,
+    "rows": 13,
+    "num_perm": 128,
+    "threshold": 0.8,
+    "verified_merges": 33
+  },
+  "datasketch": {
+    "docs_removed": 37,
+    "planted_pairs_above_threshold": 42,
+    "recall_on_planted_above_threshold": 0.7381,
+    "removed_docs_not_verified_as_similar(exact_J<thr-0.15)": 1,
+    "seconds": 6.62
+  },
+  "agreement_keep_masks": 0.9878
+}
