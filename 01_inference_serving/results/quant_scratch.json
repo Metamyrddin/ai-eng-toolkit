@@ -1,0 +1,116 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 17:49:59 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "model": "HuggingFaceTB/SmolLM2-135M",
+  "protocol": "WikiText-2 raw test, first 20000 chars, 4 x 512 tokens",
+  "rows": [
+    {
+      "bits": 32,
+      "group": null,
+      "ppl": 20.886,
+      "rel_weight_err": 0.0,
+      "bits_per_weight": 32.0
+    },
+    {
+      "bits": 8,
+      "group": 0,
+      "ppl": 21.095,
+      "rel_weight_err": 0.0085,
+      "bits_per_weight": 8.023
+    },
+    {
+      "bits": 8,
+      "group": 64,
+      "ppl": 20.951,
+      "rel_weight_err": 0.0062,
+      "bits_per_weight": 8.25
+    },
+    {
+      "bits": 8,
+      "group": 32,
+      "ppl": 20.951,
+      "rel_weight_err": 0.0056,
+      "bits_per_weight": 8.5
+    },
+    {
+      "bits": 4,
+      "group": 0,
+      "ppl": 48.689,
+      "rel_weight_err": 0.1547,
+      "bits_per_weight": 4.023
+    },
+    {
+      "bits": 4,
+      "group": 64,
+      "ppl": 29.264,
+      "rel_weight_err": 0.1128,
+      "bits_per_weight": 4.25
+    },
+    {
+      "bits": 4,
+      "group": 32,
+      "ppl": 27.758,
+      "rel_weight_err": 0.1006,
+      "bits_per_weight": 4.5
+    },
+    {
+      "bits": 3,
+      "group": 0,
+      "ppl": 28838.695,
+      "rel_weight_err": 0.3561,
+      "bits_per_weight": 3.023
+    },
+    {
+      "bits": 3,
+      "group": 64,
+      "ppl": 251.388,
+      "rel_weight_err": 0.2623,
+      "bits_per_weight": 3.25
+    },
+    {
+      "bits": 3,
+      "group": 32,
+      "ppl": 137.129,
+      "rel_weight_err": 0.2342,
+      "bits_per_weight": 3.5
+    },
+    {
+      "bits": 2,
+      "group": 0,
+      "ppl": 48717784.525,
+      "rel_weight_err": 0.8665,
+      "bits_per_weight": 2.023
+    },
+    {
+      "bits": 2,
+      "group": 64,
+      "ppl": 4480415.384,
+      "rel_weight_err": 0.7228,
+      "bits_per_weight": 2.25
+    },
+    {
+      "bits": 2,
+      "group": 32,
+      "ppl": 2841900.258,
+      "rel_weight_err": 0.6609,
+      "bits_per_weight": 2.5
+    }
+  ]
+}

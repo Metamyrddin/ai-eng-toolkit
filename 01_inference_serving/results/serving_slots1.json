@@ -1,0 +1,106 @@
+{
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.41",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "cpu_count": 8,
+    "timestamp_local": "2026-11-02 17:57:59 MST",
+    "torch": "2.15.0+cpu",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "trl": "1.17.1",
+    "datasets": "5.1.0",
+    "sentence_transformers": "6.2.0",
+    "faiss": "1.15.1",
+    "llama_cpp": "0.3.36",
+    "triton": "3.9.0",
+    "numpy": "2.5.4",
+    "datasketch": "2.0.0",
+    "cuda_available": false
+  },
+  "url": "http://127.0.0.1:8080/v1/chat/completions",
+  "model": "default",
+  "rows": [
+    {
+      "concurrency": 1,
+      "requests_ok": 16,
+      "requests_failed_or_empty": 0,
+      "wall_s": 7.77,
+      "output_tokens_total": 866,
+      "throughput_tok_s": 111.5,
+      "ttft_ms_median": 13.4,
+      "ttft_ms_p95": 31.2,
+      "tpot_ms_mean_of_means": 9.16,
+      "e2e_s_median": 0.53,
+      "trials": 5,
+      "throughput_tok_s_all_trials": [
+        101.9,
+        118.9,
+        119.0,
+        111.5,
+        105.1
+      ],
+      "failed_or_empty_all_trials": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "concurrency": 2,
+      "requests_ok": 16,
+      "requests_failed_or_empty": 0,
+      "wall_s": 8.21,
+      "output_tokens_total": 866,
+      "throughput_tok_s": 105.5,
+      "ttft_ms_median": 589.9,
+      "ttft_ms_p95": 672.4,
+      "tpot_ms_mean_of_means": 9.48,
+      "e2e_s_median": 1.17,
+      "trials": 5,
+      "throughput_tok_s_all_trials": [
+        105.5,
+        103.8,
+        106.2,
+        106.0,
+        103.3
+      ],
+      "failed_or_empty_all_trials": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "concurrency": 4,
+      "requests_ok": 16,
+      "requests_failed_or_empty": 0,
+      "wall_s": 8.51,
+      "output_tokens_total": 866,
+      "throughput_tok_s": 101.7,
+      "ttft_ms_median": 1587.5,
+      "ttft_ms_p95": 1951.3,
+      "tpot_ms_mean_of_means": 9.73,
+      "e2e_s_median": 2.05,
+      "trials": 5,
+      "throughput_tok_s_all_trials": [
+        104.5,
+        104.9,
+        101.7,
+        100.6,
+        98.8
+      ],
+      "failed_or_empty_all_trials": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}
