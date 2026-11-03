@@ -1,0 +1,71 @@
+{
+  "device": "cpu",
+  "gpu_name": null,
+  "gpu_count": 0,
+  "torch": "2.15.0+cpu",
+  "is_real_gpu_run": false,
+  "areas": {
+    "01": {
+      "status": "PASS",
+      "seconds": 5.2,
+      "same_tokens_with_and_without_cache": true,
+      "seconds_with_cache": 0.871,
+      "seconds_without_cache": 1.726,
+      "dtype": "torch.float32"
+    },
+    "02": {
+      "status": "PASS",
+      "seconds": 5.4,
+      "tiled_vs_builtin_max_error": 3.5762786865234375e-07,
+      "sdpa_script_ok": true,
+      "sdpa_script_output": "ENTION {'available': False, 'reason': 'RuntimeError: No viable backend for scaled_dot_product_attention was found. This is likely due to turning off both the math kernel and the fused kernels.'} | CUDNN_ATTENTION {'available': False, 'reason': 'RuntimeError: No viable backend for scaled_dot_product_attention was found. This is likely due to turning off both the math kernel and the fused kernels.'}"
+    },
+    "03": {
+      "status": "PASS",
+      "seconds": 5.4,
+      "script_output": "x-6.12.94+-x86_64-with-glibc2.41', 'cpu': 'Intel(R) Xeon(R) Processor', 'cpu_count': 8, 'timestamp_local': '2026-11-02 19:23:56 MST', 'torch': '2.15.0+cpu', 'transformers': '5.22.1', 'peft': '0.21.2', 'trl': '1.17.1', 'datasets': '5.1.0', 'sentence_transformers': '6.2.0', 'faiss': '1.15.1', 'llama_cpp': '0.3.36', 'triton': '3.9.0', 'numpy': '2.5.4', 'datasketch': '2.0.0', 'cuda_available': False}}",
+      "note": "ddp_cpu.py asserts internally that DDP matches single-process training."
+    },
+    "04": {
+      "status": "PASS",
+      "seconds": 3.9,
+      "first_loss": 2.0538,
+      "last_loss": 0.1619,
+      "seconds_for_15_steps": 3.345
+    },
+    "05": {
+      "status": "PASS",
+      "seconds": 0.7,
+      "loglik_paris_vs_banana": [
+        -0.9230517745018005,
+        -17.810056686401367
+      ],
+      "wilson_50_of_100": [
+        0.404,
+        0.596
+      ]
+    },
+    "06": {
+      "status": "PASS",
+      "seconds": 0.0,
+      "keep_mask": [
+        true,
+        false,
+        true
+      ],
+      "note": "CPU-only area; the device setting is ignored."
+    },
+    "07": {
+      "status": "PASS",
+      "seconds": 0.7,
+      "similarity_related": 0.58,
+      "similarity_unrelated": 0.067,
+      "seconds_to_embed_300_sentences": 0.086
+    },
+    "08": {
+      "status": "PASS",
+      "seconds": 0.3,
+      "last_layer_lens_vs_model_logits_max_diff": 4.76837158203125e-06
+    }
+  }
+}

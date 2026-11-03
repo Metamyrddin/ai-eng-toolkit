@@ -1,0 +1,38 @@
+CHECK                                                RESULT  DETAIL
+python version                                       PASS    Python 3.13.5 (need 3.10 or newer)
+virtual environment                                  PASS    /workspace/ai-eng-toolkit/.venv
+import numpy                                         PASS    2.5.4
+import scipy                                         PASS    1.18.1
+import torch                                         PASS    2.15.0+cpu
+import transformers                                  PASS    5.22.1
+import datasets                                      PASS    5.1.0
+import peft                                          PASS    0.21.2
+import trl                                           PASS    1.17.1
+import accelerate                                    PASS    1.15.0
+import sentence_transformers                         PASS    6.2.0
+import faiss                                         PASS    1.15.1
+import rank_bm25                                     PASS    version unknown
+import datasketch                                    PASS    2.0.0
+import llama_cpp                                     PASS    0.3.36
+import triton                                        PASS    3.9.0
+import psutil                                        PASS    7.2.2
+import pytest                                        PASS    9.2.0
+cached model HuggingFaceTB/SmolLM2-135M              PASS    found
+cached model HuggingFaceTB/SmolLM2-360M              PASS    found
+cached model HuggingFaceTB/SmolLM2-135M-Instruct     PASS    found
+cached model Qwen/Qwen2.5-0.5B-Instruct              PASS    found
+cached model Qwen/Qwen2.5-0.5B-Instruct-GGUF         PASS    found
+cached model sentence-transformers/all-MiniLM-L6-v2  PASS    found
+cached model cross-encoder/ms-marco-MiniLM-L-6-v2    PASS    found
+GGUF file q4_k_m                                     PASS    found
+llama-server binary                                  PASS    built with GNU 11.4.0 for Linux x86_64
+smoke test area 1 inference                          PASS    ran correctly (16s)
+smoke test area 2 gpu-perf                           PASS    ran correctly (1s)
+smoke test area 3 distributed                        PASS    ran correctly (9s)
+smoke test area 4 post-training                      PASS    ran correctly (12s)
+smoke test area 5 evals                              PASS    ran correctly (1s)
+smoke test area 6 data-eng                           PASS    ran correctly (0s)
+smoke test area 7 rag                                PASS    ran correctly (9s)
+smoke test area 8 safety                             PASS    ran correctly (6s)
+
+35 of 35 checks passed in 20 seconds.
