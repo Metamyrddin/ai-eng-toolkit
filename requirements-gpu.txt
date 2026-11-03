@@ -1,0 +1,13 @@
+# This file lists the extra packages for a computer with an NVIDIA GPU. It has NOT been tested,
+# because the build computer has no GPU.
+#
+# More technical notes:
+# GPU / cloud requirements - UNTESTED (no GPU on the build box). Start from requirements-cpu.txt, then:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128     # pick the CUDA tag matching your driver: https://pytorch.org/get-started/locally/
+-r requirements-cpu.txt
+vllm                   # serving; pins its own torch - prefer a fresh venv for vLLM (see https://docs.vllm.ai/en/latest/getting_started/installation/)
+bitsandbytes           # QLoRA / 8-bit optimizers (CUDA)
+flash-attn             # optional; needs CUDA toolkit + nvcc to build, see https://github.com/Dao-AILab/flash-attention
+faiss-gpu-cu12         # optional (community build); or keep faiss-cpu
+lm-eval                # EleutherAI lm-evaluation-harness
+nvitop                 # GPU monitoring (optional)

@@ -1,0 +1,23 @@
+# Packages to install inside a free Kaggle or Colab notebook (UNTESTED on those services until you run it).
+#
+# Why a separate file? Kaggle and Colab already ship PyTorch with GPU support. Installing the bigger
+# requirements-gpu.txt would also install vLLM, which replaces PyTorch with a different version and can take
+# a long time or break the notebook. This lighter list leaves the notebook's own PyTorch alone.
+# If you really want vLLM (area 1 only), run:  pip install vllm   in a separate, fresh notebook.
+numpy
+scipy
+psutil
+tqdm
+pyyaml
+pytest
+transformers>=5.0
+tokenizers
+datasets>=4.0
+huggingface_hub>=1.0
+safetensors
+accelerate>=1.0
+peft>=0.17
+trl>=1.0
+sentence-transformers>=5.0
+rank-bm25
+datasketch
