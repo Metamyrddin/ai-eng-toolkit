@@ -226,6 +226,9 @@ jobs:
             throw "The clear failure message was not printed."
           }
           if ($raw -match "RESULT  DETAIL") { throw "The health check table ran after a failed build." }
+          # The health check was required to exit 1. That code is still stored, and GitHub would
+          # fail this step because of it. The checks above already passed, so clear it.
+          $global:LASTEXITCODE = 0
 
       - name: Remove the half-built virtual environment
         shell: powershell
