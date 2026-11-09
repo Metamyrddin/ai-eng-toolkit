@@ -15,7 +15,6 @@ Reads the output back with PackedDataset to verify round-trip and prints through
 """
 import argparse
 import json
-import resource
 import sys
 import time
 from pathlib import Path
@@ -51,6 +50,20 @@ class StreamingDeduper:
         for k in keys:
             self.buckets.setdefault(k, []).append(idx)
         return False
+
+
+def peak_rss_mb():
+    """Return the most memory this process has used, in megabytes.
+
+    Linux and macOS provide this through the resource module. Windows does not have that
+    module, so this returns None there. The tests do not need this number.
+    """
+    try:
+        import resource
+    except ImportError:
+        return None
+    # On Linux this value is in kilobytes. That is the unit used for the saved results.
+    return round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024, 1)
 
 
 def doc_iter(source, n):
@@ -167,7 +180,7 @@ def main():
     res = {"environment": env.environment_info(), **stats, "fail_reasons": fail_reasons, "rows": n_rows,
            "seq_len": a.seq_len, "shards": shard_id, "seconds": round(elapsed, 1),
            "docs_per_s": round(stats["seen"] / elapsed, 1), "tokens_per_s": round(stats["tokens_kept"] / elapsed, 0),
-           "peak_rss_mb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024, 1),
+           "peak_rss_mb": peak_rss_mb(),
            "planted_exact_dups": len(first_docs), "source": a.source,
            "roundtrip_ok": bool((ds[0] == np.load(sorted(out.glob("shard_*.npy"))[0])[0]).all())}
     print(res)

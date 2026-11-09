@@ -249,9 +249,11 @@ Each line below names one folder or file and explains it in one sentence.
   - `check_urls.py` This program checks that every web link and cited paper title in the project is correct.
   - `download_models.py` This program downloads all needed models and datasets into the local cache.
   - `env_inductor_cpu_nocompiler.sh` This script lets torch.compile work on a computer without a C++ compiler.
-  - `get_llamacpp.sh` This script downloads the ready-made llama.cpp programs into the .bin folder.
-  - `healthcheck.py` This program checks the installation and runs one small test for each area, and then prints a PASS or FAIL table.
-  - `healthcheck.sh` This script starts the health check inside the virtual environment with one short command.
+  - `get_llamacpp.sh` This script downloads the ready-made llama.cpp programs into the .bin folder. On Windows it hands the download to `get_llamacpp.ps1`.
+  - `get_llamacpp.ps1` This script downloads the official Windows CPU build of llama.cpp into the .bin folder.
+  - `healthcheck.py` This program checks the installation and runs one small test for each area, and then prints a PASS, FAIL, or SKIP table.
+  - `healthcheck.sh` This script starts the health check inside the virtual environment. If `.venv` is missing, it builds it first.
+  - `healthcheck.ps1` This script does the same job from Windows PowerShell, and it builds a missing `.venv` with `setup.ps1`.
   - `healthcheck_last_output.txt` This file is the saved output of the last health check run.
   - `make_results.py` This program builds each area's RESULTS.md page from the measured JSON files.
   - `make_zigcxx.sh` This script builds a substitute C++ compiler from Zig for computers that have none.
@@ -261,6 +263,7 @@ Each line below names one folder or file and explains it in one sentence.
 - `.gitignore` This file tells Git which files must never be uploaded, such as the virtual environment, model caches, large files and secrets.
 - `GLOSSARY.md` This file explains the technical words of the project in plain language.
 - `LICENSE` This file contains the MIT license, which lets anyone use and change the code.
+- `.github/workflows/windows-healthcheck.yml` This file tells GitHub Actions to build a missing `.venv` and run the health check on Windows and on Linux.
 - `pytest.ini` This file holds the settings for pytest, including the name of the slow-test marker.
 - `README.md` This file is the front page of the project and explains what it is and how to start.
 - `requirements-cpu.txt` This file lists the Python packages needed on a laptop without a GPU.
@@ -268,7 +271,7 @@ Each line below names one folder or file and explains it in one sentence.
 - `requirements-gpu.txt` This file lists the extra packages for a GPU computer, and it is untested.
 - `requirements-lock-cpu-linux-py313.txt` This file lists the exact package versions that were used to produce the results.
 - `run_all.sh` This script runs all eight areas one after the other and rebuilds every results file.
-- `setup.ps1` This script sets up the project on Windows, and it is untested.
+- `setup.ps1` This script sets up the project on Windows. The health check runs it when `.venv` is missing. Triton and DeepSpeed are left out.
 - `setup.sh` This script sets up the project on Linux or macOS.
 - `STATUS.md` This file is a progress log that records what was built, run and checked in each step.
 - `STRUCTURE.md` This file is the guide you are reading now, with a map of every folder and file.

@@ -42,17 +42,40 @@ Run these commands from the project folder, one at a time.
 ```bash
 ./setup.sh                      # Creates the virtual environment, installs packages and downloads about 2.5 GB of small models.
 source .venv/bin/activate       # Turns the virtual environment on for this terminal.
-bash tools/healthcheck.sh       # Checks in about a minute that everything works and prints a PASS or FAIL table.
+bash tools/healthcheck.sh       # If .venv is missing, this builds it with setup.sh, then prints a PASS or FAIL table.
 pytest -q -m "not slow"         # Runs the fast tests.
 pytest -q                       # Runs all 102 tests, including the two-process jobs (needs the models downloaded).
 export HF_HUB_OFFLINE=1         # After the first download, this lets everything run without internet.
 cd 01_inference_serving && python kv_cache_demo.py   # Runs your first experiment.
 ```
 
-On Windows you can run `powershell -ExecutionPolicy Bypass -File setup.ps1`.
-This was not tested on Windows, because everything was built and run on Linux with an x86-64 CPU.
-Triton and DeepSpeed have no normal Windows installers, so use WSL2 (Linux inside Windows) for those two.
-You need Python 3.10 or newer, and we used Python 3.13.
+You need Python 3.10 or newer. We used Python 3.13 on the original Linux build. The GitHub Actions jobs use Python 3.12.
+
+If `.venv` is missing, `bash tools/healthcheck.sh` prints a short note and builds it, then continues the checks. On Linux and macOS the build uses `bash setup.sh`. On Windows Git Bash the build uses `setup.ps1`. The first build can take several minutes, because it downloads packages and models. It also downloads the llama.cpp programs. If `.venv` is already there, the health check does not build it again. If the build fails, the script stops with a clear message and a non-zero exit code. It does not keep going and then fail with `python: command not found`.
+
+## Quick start on Windows
+
+You can use PowerShell or Git Bash. Both build `.venv` when it is missing, then run the health check. They do not only print instructions.
+
+PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/healthcheck.ps1
+```
+
+Git Bash:
+
+```bash
+bash tools/healthcheck.sh
+```
+
+Add `--fast` when you want to skip the checks that load a language model. The Windows build runs `setup.ps1`. That script looks for the `python` command, then `python3`, then the `py` launcher. A Windows virtual environment uses `.venv\Scripts\python.exe`.
+
+Triton and DeepSpeed are not installed, because they have no normal Windows installers. The health check marks Triton as SKIP and says to use WSL2. A SKIP is not a pass. The DeepSpeed tests that need the DeepSpeed package are skipped for the same reason. The tests that only check that the settings files are valid JSON still run.
+
+WSL2 was not tested. macOS was not tested. The full health check without `--fast` was not part of the automatic Windows run.
+
+A GitHub Actions workflow runs these Windows commands on `windows-latest`, and it also runs the Linux health check. Those runners are free for this public repository. The workflow file is `.github/workflows/windows-healthcheck.yml`.
 
 ## Using the toolkit offline
 
@@ -92,7 +115,9 @@ The following parts are UNTESTED, because they need hardware or software that th
 - Real DeepSpeed and FSDP training on GPUs, and QLoRA with bitsandbytes.
 - The flash-attn package, Triton on a real GPU, and the CUDA profiler.
 - Speed gains from FP8 and bfloat16 hardware.
-- The setup scripts on Windows and macOS.
+- The setup script on macOS.
+- WSL2. Native Windows skips Triton and DeepSpeed and tells you to use WSL2. That Linux-inside-Windows path was not tried.
+- The health check without `--fast` in the automatic Linux and Windows runs. Those extra checks load a language model.
 
 ## One file that is not in the GitHub repository
 

@@ -12,6 +12,11 @@ import os
 import sys
 from pathlib import Path
 
+# Some Windows builds of PyTorch refuse to start the gloo backend unless this is turned off.
+# Linux and macOS do not need the switch, so it is set only on native Windows.
+if sys.platform == "win32":
+    os.environ.setdefault("USE_LIBUV", "0")
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import torch  # noqa: E402
 import torch.distributed as dist  # noqa: E402
