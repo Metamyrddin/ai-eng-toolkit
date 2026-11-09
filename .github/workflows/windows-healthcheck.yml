@@ -1,0 +1,238 @@
+# This workflow builds a missing .venv and runs the health check.
+# It runs on GitHub's free windows-latest and ubuntu-latest machines.
+# The Windows jobs use Git Bash and PowerShell. A short job forces the Windows build to fail.
+# WSL2, macOS, and the health check without --fast are not part of this workflow.
+name: Health check
+
+on:
+  push:
+    branches:
+      - cursor/healthcheck-missing-venv-444e
+  pull_request:
+    branches:
+      - cursor/healthcheck-missing-venv-444e
+  workflow_dispatch:
+
+jobs:
+  linux:
+    name: Linux fresh health check
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-cpu.txt
+
+      - name: Restore cached model files when a previous run saved them
+        uses: actions/cache@v4
+        with:
+          path: .hf_cache
+          key: hf-cache-v1-${{ hashFiles('tools/download_models.py') }}
+          restore-keys: |
+            hf-cache-v1-
+
+      - name: Build .venv if it is missing, then run the fast health check
+        shell: bash
+        run: |
+          set -o pipefail
+          test ! -e .venv
+          bash tools/healthcheck.sh --fast | tee "$RUNNER_TEMP/linux-1.txt"
+          echo "EXIT:${PIPESTATUS[0]}" | tee -a "$RUNNER_TEMP/linux-1.txt"
+          grep -q "No .venv found. Building it now with setup.sh" "$RUNNER_TEMP/linux-1.txt"
+          grep -q "checks passed" "$RUNNER_TEMP/linux-1.txt"
+
+      - name: Run the fast health check again and do not rebuild
+        shell: bash
+        run: |
+          set -o pipefail
+          bash tools/healthcheck.sh --fast | tee "$RUNNER_TEMP/linux-2.txt"
+          echo "EXIT:${PIPESTATUS[0]}" | tee -a "$RUNNER_TEMP/linux-2.txt"
+          if grep -q "Building it now" "$RUNNER_TEMP/linux-2.txt"; then
+            echo "The second run rebuilt .venv. It must not do that."
+            exit 1
+          fi
+
+      - name: Run the test suite
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          python -m pytest
+
+  windows-git-bash:
+    name: Windows Git Bash health check
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-cpu.txt
+
+      - name: Restore cached model files when a previous run saved them
+        uses: actions/cache@v4
+        with:
+          path: .hf_cache
+          key: hf-cache-v1-${{ hashFiles('tools/download_models.py') }}
+          restore-keys: |
+            hf-cache-v1-
+
+      - name: Build .venv if it is missing, then run the fast health check
+        shell: bash
+        run: |
+          set -o pipefail
+          test ! -e .venv
+          bash tools/healthcheck.sh --fast | tee "$RUNNER_TEMP/win-bash-1.txt"
+          echo "EXIT:${PIPESTATUS[0]}" | tee -a "$RUNNER_TEMP/win-bash-1.txt"
+          grep -q "No .venv found. Building it now with setup.ps1" "$RUNNER_TEMP/win-bash-1.txt"
+          grep -q "not supported on native Windows; use WSL2" "$RUNNER_TEMP/win-bash-1.txt"
+          grep -E -q "checks passed|skipped," "$RUNNER_TEMP/win-bash-1.txt"
+          if grep -q "^FAILED:" "$RUNNER_TEMP/win-bash-1.txt"; then
+            echo "A health check row failed."
+            exit 1
+          fi
+
+      - name: Run the fast health check again and do not rebuild
+        shell: bash
+        run: |
+          set -o pipefail
+          bash tools/healthcheck.sh --fast | tee "$RUNNER_TEMP/win-bash-2.txt"
+          echo "EXIT:${PIPESTATUS[0]}" | tee -a "$RUNNER_TEMP/win-bash-2.txt"
+          if grep -q "Building it now" "$RUNNER_TEMP/win-bash-2.txt"; then
+            echo "The second run rebuilt .venv. It must not do that."
+            exit 1
+          fi
+
+      - name: Run the test suite
+        shell: bash
+        run: |
+          .venv/Scripts/python.exe -m pytest
+
+  windows-powershell:
+    name: Windows PowerShell health check
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-cpu.txt
+
+      - name: Restore cached model files when a previous run saved them
+        uses: actions/cache@v4
+        with:
+          path: .hf_cache
+          key: hf-cache-v1-${{ hashFiles('tools/download_models.py') }}
+          restore-keys: |
+            hf-cache-v1-
+
+      - name: Build .venv from a clean checkout, then run the fast health check
+        shell: powershell
+        run: |
+          if (Test-Path .venv) { throw ".venv should not exist in a fresh checkout." }
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast *> "$env:RUNNER_TEMP\win-ps-1.txt"
+          $code = $LASTEXITCODE
+          Get-Content "$env:RUNNER_TEMP\win-ps-1.txt"
+          "EXIT:$code" | Tee-Object -FilePath "$env:RUNNER_TEMP\win-ps-1.txt" -Append
+          if ($code -ne 0) { throw "expected exit code 0, got $code" }
+          $raw = Get-Content "$env:RUNNER_TEMP\win-ps-1.txt" -Raw
+          if ($raw -notmatch "No \.venv found\. Building it now with setup\.ps1") {
+            throw "The first run did not build .venv."
+          }
+          if ($raw -notmatch "not supported on native Windows; use WSL2") {
+            throw "Triton was not reported as a Windows skip."
+          }
+          if ($raw -match "(?m)^FAILED:") { throw "A health check row failed." }
+
+      - name: Run the fast health check again and do not rebuild
+        shell: powershell
+        run: |
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast *> "$env:RUNNER_TEMP\win-ps-2.txt"
+          $code = $LASTEXITCODE
+          Get-Content "$env:RUNNER_TEMP\win-ps-2.txt"
+          "EXIT:$code" | Tee-Object -FilePath "$env:RUNNER_TEMP\win-ps-2.txt" -Append
+          if ($code -ne 0) { throw "expected exit code 0, got $code" }
+          $raw = Get-Content "$env:RUNNER_TEMP\win-ps-2.txt" -Raw
+          if ($raw -match "Building it now") { throw "The second run rebuilt .venv. It must not do that." }
+
+      - name: Run the test suite
+        shell: powershell
+        run: |
+          & .\.venv\Scripts\python.exe -m pytest
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  windows-build-failure:
+    name: Windows build failure
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Point this copy at a package index that refuses connections
+        shell: powershell
+        run: |
+          $path = (Resolve-Path "setup.ps1").Path
+          $text = [System.IO.File]::ReadAllText($path)
+          $old = "https://download.pytorch.org/whl/cpu"
+          $new = "http://127.0.0.1:9/whl/cpu"
+          if (-not $text.Contains($old)) { throw "The package index URL was not found in setup.ps1." }
+          [System.IO.File]::WriteAllText($path, $text.Replace($old, $new))
+
+      - name: PowerShell health check must stop with exit code 1
+        shell: powershell
+        run: |
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast *> "$env:RUNNER_TEMP\fail-ps.txt"
+          $code = $LASTEXITCODE
+          Get-Content "$env:RUNNER_TEMP\fail-ps.txt"
+          "EXIT:$code"
+          if ($code -ne 1) { throw "expected exit code 1, got $code" }
+          $raw = Get-Content "$env:RUNNER_TEMP\fail-ps.txt" -Raw
+          if ($raw -notmatch "Building \.venv with setup\.ps1 failed") {
+            throw "The clear failure message was not printed."
+          }
+          if ($raw -match "RESULT  DETAIL") { throw "The health check table ran after a failed build." }
+
+      - name: Remove the half-built virtual environment
+        shell: powershell
+        run: |
+          if (Test-Path .venv) { Remove-Item -Recurse -Force .venv }
+
+      - name: Git Bash health check must stop with exit code 1
+        shell: bash
+        run: |
+          set +e
+          set -o pipefail
+          bash tools/healthcheck.sh --fast | tee "$RUNNER_TEMP/fail-bash.txt"
+          code=${PIPESTATUS[0]}
+          set -e
+          echo "EXIT:$code" | tee -a "$RUNNER_TEMP/fail-bash.txt"
+          if [ "$code" -ne 1 ]; then
+            echo "expected exit code 1, got $code"
+            exit 1
+          fi
+          grep -q "Building .venv with setup.ps1 failed" "$RUNNER_TEMP/fail-bash.txt"
+          if grep -q "RESULT  DETAIL" "$RUNNER_TEMP/fail-bash.txt"; then
+            echo "The health check table ran after a failed build."
+            exit 1
+          fi

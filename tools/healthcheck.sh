@@ -7,18 +7,18 @@
 # The first build can take several minutes, because it downloads packages and models.
 # If .venv is already there, this script does not build it again.
 #
-# The build command is bash setup.sh. That file was read before this change.
-# It does not call the health check, so the two scripts do not call each other in a loop.
-# A guard variable still stops a loop if setup.sh ever starts this script while a build is running.
-# setup.sh installs the packages and downloads the models. It does not download the llama.cpp
-# programs. This script runs bash tools/get_llamacpp.sh after setup.sh, because the health
-# check looks for the llama-server program.
+# On Linux and macOS the build command is bash setup.sh.
+# On Windows Git Bash the build command is setup.ps1, because a Windows virtual environment
+# lives in .venv/Scripts and the Python command may be python, python3, or py.
+# setup.sh and setup.ps1 were read before this change. Neither one calls the health check,
+# so the two scripts do not call each other in a loop. A guard variable still stops a loop
+# if setup ever starts this script again while a build is running.
 #
-# Windows was not tested. setup.sh is for Linux and macOS. It uses the python3 command and
-# creates .venv/bin/activate. Git Bash on Windows uses .venv/Scripts/activate, and the Python
-# command there is often python instead of python3. On Windows, run
-# powershell -ExecutionPolicy Bypass -File setup.ps1, or use WSL2, which is Linux inside
-# Windows. Triton and DeepSpeed need WSL2, because they have no normal Windows installers.
+# setup.sh and setup.ps1 do not download the llama.cpp programs. This script does that next,
+# because the health check looks for llama-server. On Windows it downloads the official CPU zip.
+#
+# Triton and DeepSpeed have no normal Windows installers. On native Windows the health check
+# marks Triton as SKIP and tells you to use WSL2. WSL2 and macOS were not tested.
 set -uo pipefail
 cd "$(dirname "$0")/.."                       # Move to the repository root, wherever you started from.
 
@@ -29,7 +29,24 @@ activate_venv() {
     return 0
   fi
   if [ -f .venv/Scripts/activate ]; then
-    source .venv/Scripts/activate             # This is the activate file in Git Bash on Windows.
+    # This is the activate file in Git Bash on Windows.
+    # Some copies use Windows line endings. Git Bash can reject the extra return character,
+    # so those characters are removed and the same file is then read.
+    # shellcheck disable=SC1091
+    source <(tr -d '\r' < .venv/Scripts/activate) || true
+    return 0
+  fi
+  return 1
+}
+
+# Pick powershell.exe when Git Bash can see it, and powershell otherwise.
+find_powershell() {
+  if command -v powershell.exe >/dev/null 2>&1; then
+    echo powershell.exe
+    return 0
+  fi
+  if command -v powershell >/dev/null 2>&1; then
+    echo powershell
     return 0
   fi
   return 1
@@ -42,42 +59,61 @@ if ! activate_venv; then
     exit 1
   fi
 
-  # This stops a loop if setup.sh, or something it runs, starts the health check again.
+  # This stops a loop if setup, or something it runs, starts the health check again.
   if [ -n "${AI_ENG_HEALTHCHECK_BUILDING:-}" ]; then
     echo "The health check started again while it was already building .venv. Stopping so setup and the health check do not call each other forever."
     exit 1
   fi
 
-  # These system names mean the script is running in Bash on Windows. setup.sh cannot build that .venv.
+  # These system names mean the script is running in Bash on Windows.
   case "$(uname -s)" in
     MINGW*|MSYS*|CYGWIN*)
-      echo "No .venv found. This automatic build was not tested on Windows."
-      echo "setup.sh is for Linux and macOS. It uses python3 and creates .venv/bin/activate."
-      echo "Git Bash on Windows uses .venv/Scripts/activate, and the Python command is often python instead of python3."
-      echo "On Windows, run: powershell -ExecutionPolicy Bypass -File setup.ps1"
-      echo "Or use WSL2 (Linux inside Windows) and run this health check there. Triton and DeepSpeed need WSL2, because they have no normal Windows installers."
-      exit 1
+      echo "No .venv found. Building it now with setup.ps1; this can take several minutes and downloads packages and models."
+      if command -v cygpath >/dev/null 2>&1; then
+        WIN_SETUP=$(cygpath -w "$PWD/setup.ps1")
+      else
+        WIN_SETUP="$PWD/setup.ps1"
+      fi
+      if ! PS_BIN=$(find_powershell); then
+        echo "Building .venv with setup.ps1 failed. The powershell command was not found, so the health check did not run."
+        exit 1
+      fi
+      # MSYS_NO_PATHCONV stops Git Bash from rewriting the Windows path before PowerShell sees it.
+      if ! AI_ENG_HEALTHCHECK_BUILDING=1 MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' "$PS_BIN" -NoProfile -ExecutionPolicy Bypass -File "$WIN_SETUP"; then
+        echo "Building .venv with setup.ps1 failed. The health check did not run. If a .venv folder was left behind, remove it, fix the error above, and run this command again."
+        exit 1
+      fi
+      ;;
+    *)
+      echo "No .venv found. Building it now with setup.sh; this can take several minutes and downloads packages and models."
+      if ! AI_ENG_HEALTHCHECK_BUILDING=1 bash setup.sh; then
+        echo "Building .venv with setup.sh failed. The health check did not run. If a .venv folder was left behind, remove it, fix the error above, and run this command again."
+        exit 1
+      fi
       ;;
   esac
 
-  echo "No .venv found. Building it now with setup.sh; this can take several minutes and downloads packages and models."
-  if ! AI_ENG_HEALTHCHECK_BUILDING=1 bash setup.sh; then
-    echo "Building .venv with setup.sh failed. The health check did not run. If a .venv folder was left behind, remove it, fix the error above, and run this command again."
-    exit 1
-  fi
   if ! bash tools/get_llamacpp.sh; then
     echo "The packages were installed, but downloading the llama.cpp programs failed. The health check did not run. Fix the error above, then run bash tools/get_llamacpp.sh and this command again."
     exit 1
   fi
   if ! activate_venv; then
-    echo "setup.sh finished, but .venv still has no activate script. The health check did not run."
+    echo "The setup finished, but .venv still has no activate script. The health check did not run."
     exit 1
   fi
 fi
 
-if ! command -v python >/dev/null 2>&1; then
+# On Windows, call the virtual environment's python.exe by name so a system Python is not used by mistake.
+# On Linux and macOS, activation puts python on the path.
+if [ -f .venv/Scripts/python.exe ]; then
+  PY_BIN=".venv/Scripts/python.exe"
+elif command -v python >/dev/null 2>&1; then
+  PY_BIN=python
+elif command -v python.exe >/dev/null 2>&1; then
+  PY_BIN=python.exe
+else
   echo "The virtual environment is on, but the python command was not found. The health check did not run."
   exit 1
 fi
 
-python tools/healthcheck.py "$@"
+"$PY_BIN" tools/healthcheck.py "$@"

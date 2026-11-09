@@ -49,11 +49,33 @@ export HF_HUB_OFFLINE=1         # After the first download, this lets everything
 cd 01_inference_serving && python kv_cache_demo.py   # Runs your first experiment.
 ```
 
-You need Python 3.10 or newer. We used Python 3.13.
+You need Python 3.10 or newer. We used Python 3.13 on the original Linux build. The GitHub Actions jobs use Python 3.12.
 
-If `.venv` is missing, `bash tools/healthcheck.sh` prints a short note and builds it with `bash setup.sh`, then continues the checks. The first build can take several minutes, because it downloads packages and models. It also downloads the llama.cpp programs, which `setup.sh` does not download by itself. If `.venv` is already there, the health check does not build it again. If the build fails, the script stops with a clear message and a non-zero exit code. It does not keep going and then fail with `python: command not found`.
+If `.venv` is missing, `bash tools/healthcheck.sh` prints a short note and builds it, then continues the checks. On Linux and macOS the build uses `bash setup.sh`. On Windows Git Bash the build uses `setup.ps1`. The first build can take several minutes, because it downloads packages and models. It also downloads the llama.cpp programs. If `.venv` is already there, the health check does not build it again. If the build fails, the script stops with a clear message and a non-zero exit code. It does not keep going and then fail with `python: command not found`.
 
-On Windows, this automatic build was not tested. `setup.sh` is for Linux and macOS. It uses the `python3` command and creates `.venv/bin/activate`. Git Bash on Windows uses `.venv/Scripts/activate`, and the Python command there is often `python` instead of `python3`. On Windows, run `powershell -ExecutionPolicy Bypass -File setup.ps1`, or use WSL2 (Linux inside Windows) and follow the Linux steps there. Triton and DeepSpeed have no normal Windows installers, so those two need WSL2. The Windows scripts were not tested, because everything was built and run on Linux with an x86-64 CPU.
+## Quick start on Windows
+
+You can use PowerShell or Git Bash. Both build `.venv` when it is missing, then run the health check. They do not only print instructions.
+
+PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/healthcheck.ps1
+```
+
+Git Bash:
+
+```bash
+bash tools/healthcheck.sh
+```
+
+Add `--fast` when you want to skip the checks that load a language model. The Windows build runs `setup.ps1`. That script looks for the `python` command, then `python3`, then the `py` launcher. A Windows virtual environment uses `.venv\Scripts\python.exe`.
+
+Triton and DeepSpeed are not installed, because they have no normal Windows installers. The health check marks Triton as SKIP and says to use WSL2. A SKIP is not a pass. The DeepSpeed tests that need the DeepSpeed package are skipped for the same reason. The tests that only check that the settings files are valid JSON still run.
+
+WSL2 was not tested. macOS was not tested. The full health check without `--fast` was not part of the automatic Windows run.
+
+A GitHub Actions workflow runs these Windows commands on `windows-latest`, and it also runs the Linux health check. Those runners are free for this public repository. The workflow file is `.github/workflows/windows-healthcheck.yml`.
 
 ## Using the toolkit offline
 
@@ -93,8 +115,9 @@ The following parts are UNTESTED, because they need hardware or software that th
 - Real DeepSpeed and FSDP training on GPUs, and QLoRA with bitsandbytes.
 - The flash-attn package, Triton on a real GPU, and the CUDA profiler.
 - Speed gains from FP8 and bfloat16 hardware.
-- The setup scripts on Windows and macOS.
-- The health check's automatic build of a missing `.venv` on Windows and macOS. That path was tried on Linux only.
+- The setup script on macOS.
+- WSL2. Native Windows skips Triton and DeepSpeed and tells you to use WSL2. That Linux-inside-Windows path was not tried.
+- The health check without `--fast` in the automatic Linux and Windows runs. Those extra checks load a language model.
 
 ## One file that is not in the GitHub repository
 

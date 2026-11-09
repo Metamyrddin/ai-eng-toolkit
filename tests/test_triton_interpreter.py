@@ -1,11 +1,17 @@
 """These tests run area 2's Triton kernels in interpreter mode on awkward sizes and compare them
-with PyTorch.
+with PyTorch. On native Windows the whole file is skipped, because Triton has no normal installer.
 """
 import os
+import sys
 
 os.environ["TRITON_INTERPRET"] = "1"  # before triton is imported
 import pytest  # noqa: E402
 import torch  # noqa: E402
+
+# A marker would still import Triton while collecting tests, and that import fails on Windows.
+# This skip happens first, so the file is reported as skipped with a clear reason.
+if sys.platform == "win32":
+    pytest.skip("not supported on native Windows; use WSL2", allow_module_level=True)
 
 pytest.importorskip("triton")
 import triton_kernels as tk  # noqa: E402

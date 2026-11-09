@@ -9,6 +9,8 @@ How this file fits in the project:
       4. One tiny "smoke test" per area. A smoke test runs a very small piece of real work, such as
          generating a few tokens, to prove that the area still runs from start to finish.
     The whole run is designed to finish in about one minute on a normal laptop CPU.
+    On native Windows, Triton has no normal installer. That row is SKIP, not PASS.
+    SKIP means the check was not run. Use WSL2 if you need Triton or DeepSpeed.
 
 How to run it:
     python tools/healthcheck.py            (or:  bash tools/healthcheck.sh)
@@ -155,15 +157,40 @@ def check_environment():
 
 
 def check_imports():
-    """Return one row per required package, saying whether it can be imported and which version it is."""
+    """Return one row per required package, saying whether it can be imported and which version it is.
+
+    On native Windows, Triton is reported as skip. It is not installed there, and a missing
+    package must not be printed as a pass.
+    """
     rows = []
     for name in IMPORTS:
+        if sys.platform == "win32" and name == "triton":
+            rows.append((f"import {name}", "skip", "not supported on native Windows; use WSL2"))
+            continue
         try:
             module = importlib.import_module(name)
             rows.append((f"import {name}", True, getattr(module, "__version__", "version unknown")))
         except Exception as error:  # a missing or broken package raises ImportError or something similar
             rows.append((f"import {name}", False, f"{type(error).__name__}: {str(error)[:70]}"))
     return rows
+
+
+def find_llama_server():
+    """Return the llama-server program if it was downloaded, including the Windows .exe name."""
+    bin_dir = ROOT / ".bin"
+    patterns = (
+        "llama-*/llama-server",
+        "llama-*/llama-server.exe",
+        "llama-server",
+        "llama-server.exe",
+        "llama-*/*/llama-server",
+        "llama-*/*/llama-server.exe",
+    )
+    for pattern in patterns:
+        matches = sorted(bin_dir.glob(pattern))
+        if matches:
+            return matches[0]
+    return None
 
 
 def check_files():
@@ -175,13 +202,19 @@ def check_files():
         rows.append((f"cached model {m.replace('--', '/')}", found, "found" if found else "missing: run tools/download_models.py"))
     ggufs = list(hub.glob("models--Qwen--Qwen2.5-0.5B-Instruct-GGUF/snapshots/*/*q4_k_m.gguf"))
     rows.append(("GGUF file q4_k_m", bool(ggufs), "found" if ggufs else "missing: run tools/download_models.py"))
-    servers = list((ROOT / ".bin").glob("llama-*/llama-server"))
-    if servers:
+    server = find_llama_server()
+    if server is not None:
         # Ask the program for its version: this proves that it starts and that its libraries can be loaded.
-        r = subprocess.run([str(servers[0]), "--version"], capture_output=True, text=True, timeout=20,
-                           env={**os.environ, "LD_LIBRARY_PATH": str(servers[0].parent)})
+        # On Windows the DLL files sit next to the .exe, so that folder is put on PATH as well.
+        run_env = os.environ.copy()
+        run_env["LD_LIBRARY_PATH"] = str(server.parent) + os.pathsep + run_env.get("LD_LIBRARY_PATH", "")
+        run_env["PATH"] = str(server.parent) + os.pathsep + run_env.get("PATH", "")
+        r = subprocess.run([str(server), "--version"], capture_output=True, text=True, timeout=20,
+                           cwd=str(server.parent), env=run_env)
         text = (r.stdout + r.stderr).strip().splitlines()
         rows.append(("llama-server binary", r.returncode == 0, text[-1][:70] if text else "no output"))
+    elif sys.platform == "win32":
+        rows.append(("llama-server binary", False, "missing: run powershell -ExecutionPolicy Bypass -File tools/get_llamacpp.ps1"))
     else:
         rows.append(("llama-server binary", False, "missing: run `bash tools/get_llamacpp.sh`"))
     return rows
@@ -200,7 +233,10 @@ def run_smoke(name, code):
 
 
 def main():
-    """Run every check, print the table, and exit with 0 (all passed) or 1 (something failed)."""
+    """Run every check, print the table, and exit with 0 when nothing failed, or 1 when a check failed.
+
+    A SKIP row is not a failure. On Linux nothing is skipped, so the summary sentence stays the same.
+    """
     ap = argparse.ArgumentParser(description="Quick health check of the AI engineering toolkit.")
     ap.add_argument("--fast", action="store_true", help="skip the smoke tests that load a language model")
     args = ap.parse_args()
@@ -215,11 +251,27 @@ def main():
     print(f"{'CHECK':<{width}}  RESULT  DETAIL")
     for name, ok, detail, secs in rows:
         extra = f" ({secs:.0f}s)" if secs else ""
-        print(f"{name:<{width}}  {'PASS' if ok else 'FAIL':<6}  {detail}{extra}")
-    failed = [r for r in rows if not r[1]]
-    print(f"\n{len(rows) - len(failed)} of {len(rows)} checks passed in {time.time() - t0:.0f} seconds.")
-    if failed:
-        print("FAILED:", ", ".join(r[0] for r in failed))
+        if ok == "skip":
+            word = "SKIP"
+        elif ok:
+            word = "PASS"
+        else:
+            word = "FAIL"
+        print(f"{name:<{width}}  {word:<6}  {detail}{extra}")
+    failed = [r for r in rows if r[1] is False]
+    skipped = [r for r in rows if r[1] == "skip"]
+    passed = len(rows) - len(failed) - len(skipped)
+    elapsed = time.time() - t0
+    # When nothing was skipped, keep the original sentence so older logs stay easy to compare.
+    if skipped:
+        print(f"\n{passed} passed, {len(skipped)} skipped, {len(failed)} failed, in {elapsed:.0f} seconds.")
+        if failed:
+            print("FAILED:", ", ".join(r[0] for r in failed))
+        print("SKIPPED:", ", ".join(r[0] for r in skipped))
+    else:
+        print(f"\n{passed} of {len(rows)} checks passed in {elapsed:.0f} seconds.")
+        if failed:
+            print("FAILED:", ", ".join(r[0] for r in failed))
     return 1 if failed else 0
 
 

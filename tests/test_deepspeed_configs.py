@@ -1,10 +1,9 @@
 """These tests check that the DeepSpeed configuration files of area 3 are valid, and that DeepSpeed
 itself accepts them when it is installed.
 """
-import copy
 import glob
 import json
-import os
+import sys
 from pathlib import Path
 
 import pytest
@@ -30,10 +29,15 @@ def _materialize_auto(obj):
     return {"auto": 1}.get(obj, obj) if obj == "auto" else obj
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="not supported on native Windows; use WSL2",
+)
 @pytest.mark.parametrize("path", CFG)
 def test_parsed_by_deepspeed(path):
     """Check that DeepSpeed accepts each configuration file. The test is skipped if DeepSpeed
-    is not installed.
+    is not installed. On native Windows it is skipped because DeepSpeed has no normal installer.
+    The checks that the files are valid JSON still run on Windows.
     """
     pytest.importorskip("deepspeed")
     from deepspeed.runtime.config import DeepSpeedConfig
