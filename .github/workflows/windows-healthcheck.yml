@@ -144,13 +144,18 @@ jobs:
       - name: Build .venv from a clean checkout, then run the fast health check
         shell: powershell
         run: |
+          # cmd runs the health check so this step does not treat pip's warning text as a failure.
+          # The exit code and the log text are still checked after that.
+          $ErrorActionPreference = 'Continue'
           if (Test-Path .venv) { throw ".venv should not exist in a fresh checkout." }
-          powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast *> "$env:RUNNER_TEMP\win-ps-1.txt"
+          $log = Join-Path $env:RUNNER_TEMP 'win-ps-1.txt'
+          $cmd = 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast > "' + $log + '" 2>&1'
+          & cmd.exe /d /c $cmd
           $code = $LASTEXITCODE
-          Get-Content "$env:RUNNER_TEMP\win-ps-1.txt"
-          "EXIT:$code" | Tee-Object -FilePath "$env:RUNNER_TEMP\win-ps-1.txt" -Append
+          Get-Content -Path $log
+          Write-Output "EXIT:$code"
           if ($code -ne 0) { throw "expected exit code 0, got $code" }
-          $raw = Get-Content "$env:RUNNER_TEMP\win-ps-1.txt" -Raw
+          $raw = Get-Content -Path $log -Raw
           if ($raw -notmatch "No \.venv found\. Building it now with setup\.ps1") {
             throw "The first run did not build .venv."
           }
@@ -162,19 +167,23 @@ jobs:
       - name: Run the fast health check again and do not rebuild
         shell: powershell
         run: |
-          powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast *> "$env:RUNNER_TEMP\win-ps-2.txt"
+          $ErrorActionPreference = 'Continue'
+          $log = Join-Path $env:RUNNER_TEMP 'win-ps-2.txt'
+          $cmd = 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast > "' + $log + '" 2>&1'
+          & cmd.exe /d /c $cmd
           $code = $LASTEXITCODE
-          Get-Content "$env:RUNNER_TEMP\win-ps-2.txt"
-          "EXIT:$code" | Tee-Object -FilePath "$env:RUNNER_TEMP\win-ps-2.txt" -Append
+          Get-Content -Path $log
+          Write-Output "EXIT:$code"
           if ($code -ne 0) { throw "expected exit code 0, got $code" }
-          $raw = Get-Content "$env:RUNNER_TEMP\win-ps-2.txt" -Raw
+          $raw = Get-Content -Path $log -Raw
           if ($raw -match "Building it now") { throw "The second run rebuilt .venv. It must not do that." }
 
       - name: Run the test suite
         shell: powershell
         run: |
+          $ErrorActionPreference = 'Continue'
           & .\.venv\Scripts\python.exe -m pytest
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          if ($LASTEXITCODE -ne 0) { throw "pytest failed with exit code $LASTEXITCODE" }
 
   windows-build-failure:
     name: Windows build failure
@@ -202,12 +211,17 @@ jobs:
       - name: PowerShell health check must stop with exit code 1
         shell: powershell
         run: |
-          powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast *> "$env:RUNNER_TEMP\fail-ps.txt"
+          # cmd runs the health check so pip's warning text is kept in the log.
+          # This step still fails unless the exit code is 1 and the clear message is present.
+          $ErrorActionPreference = 'Continue'
+          $log = Join-Path $env:RUNNER_TEMP 'fail-ps.txt'
+          $cmd = 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools\healthcheck.ps1 --fast > "' + $log + '" 2>&1'
+          & cmd.exe /d /c $cmd
           $code = $LASTEXITCODE
-          Get-Content "$env:RUNNER_TEMP\fail-ps.txt"
-          "EXIT:$code"
+          Get-Content -Path $log
+          Write-Output "EXIT:$code"
           if ($code -ne 1) { throw "expected exit code 1, got $code" }
-          $raw = Get-Content "$env:RUNNER_TEMP\fail-ps.txt" -Raw
+          $raw = Get-Content -Path $log -Raw
           if ($raw -notmatch "Building \.venv with setup\.ps1 failed") {
             throw "The clear failure message was not printed."
           }
