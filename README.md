@@ -42,17 +42,18 @@ Run these commands from the project folder, one at a time.
 ```bash
 ./setup.sh                      # Creates the virtual environment, installs packages and downloads about 2.5 GB of small models.
 source .venv/bin/activate       # Turns the virtual environment on for this terminal.
-bash tools/healthcheck.sh       # Checks in about a minute that everything works and prints a PASS or FAIL table.
+bash tools/healthcheck.sh       # If .venv is missing, this builds it with setup.sh, then prints a PASS or FAIL table.
 pytest -q -m "not slow"         # Runs the fast tests.
 pytest -q                       # Runs all 102 tests, including the two-process jobs (needs the models downloaded).
 export HF_HUB_OFFLINE=1         # After the first download, this lets everything run without internet.
 cd 01_inference_serving && python kv_cache_demo.py   # Runs your first experiment.
 ```
 
-On Windows you can run `powershell -ExecutionPolicy Bypass -File setup.ps1`.
-This was not tested on Windows, because everything was built and run on Linux with an x86-64 CPU.
-Triton and DeepSpeed have no normal Windows installers, so use WSL2 (Linux inside Windows) for those two.
-You need Python 3.10 or newer, and we used Python 3.13.
+You need Python 3.10 or newer. We used Python 3.13.
+
+If `.venv` is missing, `bash tools/healthcheck.sh` prints a short note and builds it with `bash setup.sh`, then continues the checks. The first build can take several minutes, because it downloads packages and models. It also downloads the llama.cpp programs, which `setup.sh` does not download by itself. If `.venv` is already there, the health check does not build it again. If the build fails, the script stops with a clear message and a non-zero exit code. It does not keep going and then fail with `python: command not found`.
+
+On Windows, this automatic build was not tested. `setup.sh` is for Linux and macOS. It uses the `python3` command and creates `.venv/bin/activate`. Git Bash on Windows uses `.venv/Scripts/activate`, and the Python command there is often `python` instead of `python3`. On Windows, run `powershell -ExecutionPolicy Bypass -File setup.ps1`, or use WSL2 (Linux inside Windows) and follow the Linux steps there. Triton and DeepSpeed have no normal Windows installers, so those two need WSL2. The Windows scripts were not tested, because everything was built and run on Linux with an x86-64 CPU.
 
 ## Using the toolkit offline
 
@@ -93,6 +94,7 @@ The following parts are UNTESTED, because they need hardware or software that th
 - The flash-attn package, Triton on a real GPU, and the CUDA profiler.
 - Speed gains from FP8 and bfloat16 hardware.
 - The setup scripts on Windows and macOS.
+- The health check's automatic build of a missing `.venv` on Windows and macOS. That path was tried on Linux only.
 
 ## One file that is not in the GitHub repository
 
