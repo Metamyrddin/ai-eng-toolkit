@@ -8,5 +8,10 @@ if [ -f .venv/bin/activate ]; then
   source .venv/bin/activate                   # Linux and macOS layout of a virtual environment
 elif [ -f .venv/Scripts/activate ]; then
   source .venv/Scripts/activate               # Git Bash on Windows layout
+else
+  # No virtual environment was found in the usual Linux or Windows place.
+  # Stop here with a clear message, so a beginner does not only see "python: command not found".
+  echo "No virtual environment (.venv) was found. Run bash setup.sh first, or rebuild .venv from requirements-lock-cpu-linux-py313.txt."
+  exit 1
 fi
 python tools/healthcheck.py "$@"
