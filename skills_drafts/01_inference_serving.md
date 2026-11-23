@@ -25,6 +25,7 @@ python bench_serving.py --concurrency 1 2 4  # Measures the server with 1, 2 and
 
 ## Known traps and gotchas
 
+- Transformers 5.24.0 renamed the model argument `past_key_values` to `cache`. The old name still runs, but Python prints a FutureWarning, and the old name will be removed in version 5.40.0. Older 5.x versions still need `past_key_values`. If you pass `cache` to those older versions, the Llama-style models in this area accept the extra word and then ignore it, so the cache stays empty. The helper `cache_argument_name` in `common/hf_compat.py` checks the installed version and returns the name that works. `kv_cache_demo.py` and `tests/test_kv_cache.py` use that helper.
 - The built-in server of llama-cpp-python failed under concurrent streaming. With 4 clients, 7 of 8 requests returned no tokens in all 3 trials. Use the official `llama-server` program for serving tests, and run `run_llamacpp_python_server_check.sh` only to reproduce the problem.
 - The llama-cpp-python wheel is much slower than the upstream `llama-bench` program for the same model, because the two use different llama.cpp builds. Never compare absolute numbers between the two tools.
 - Speculative decoding in Hugging Face was slower than normal decoding on the CPU (0.73 times), because a 135M helper model is not cheap enough compared with a 360M target. Do not expect a speed-up unless the helper is at least about ten times cheaper.

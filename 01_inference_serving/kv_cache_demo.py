@@ -27,7 +27,7 @@ import torch  # noqa: E402
 from transformers import AutoModelForCausalLM, AutoTokenizer, DynamicCache  # noqa: E402
 
 from common import env  # noqa: E402
-from common.hf_compat import cache_drop_last  # noqa: E402
+from common.hf_compat import cache_argument_name, cache_drop_last  # noqa: E402
 
 
 def cache_nbytes(cache) -> int:
@@ -74,14 +74,17 @@ def greedy_with_cache(model, ids, n_new):
     """Prefill once, then feed only the newest token each step."""
     times = []
     cache = DynamicCache()
+    # The helper chooses cache or past_key_values for this transformers version.
+    # The same dictionary is reused because the cache object is updated in place.
+    cache_kwargs = {cache_argument_name(): cache}
     t0 = time.perf_counter()
-    out = model(ids, past_key_values=cache, use_cache=True)
+    out = model(ids, **cache_kwargs, use_cache=True)
     nxt = out.logits[:, -1].argmax(-1, keepdim=True)
     times.append(time.perf_counter() - t0)  # step 0 includes prefill (= TTFT)
     ids = torch.cat([ids, nxt], dim=1)
     for _ in range(n_new - 1):
         t0 = time.perf_counter()
-        out = model(nxt, past_key_values=cache, use_cache=True)
+        out = model(nxt, **cache_kwargs, use_cache=True)
         nxt = out.logits[:, -1].argmax(-1, keepdim=True)
         times.append(time.perf_counter() - t0)
         ids = torch.cat([ids, nxt], dim=1)
@@ -98,15 +101,18 @@ def step_cost_sweep(model, lengths=(32, 64, 128, 256, 512), repeats=7):
     rows = []
     vocab = model.config.vocab_size
     g = torch.Generator().manual_seed(0)
+    # The name is chosen once, outside the timer, so the version check is not part of the measurement.
+    cache_name = cache_argument_name()
     for L in lengths:
         ids = torch.randint(0, vocab, (1, L), generator=g)
         cache = DynamicCache()
-        model(ids[:, :-1], past_key_values=cache, use_cache=True)  # prefill L-1 tokens
+        cache_kwargs = {cache_name: cache}
+        model(ids[:, :-1], **cache_kwargs, use_cache=True)  # prefill L-1 tokens
         full, cached = [], []
         for r in range(repeats + 1):
             t0 = time.perf_counter(); model(ids, use_cache=False); tf = time.perf_counter() - t0
                         # drop the token we just appended so the cache length stays L-1 for every repeat
-            t0 = time.perf_counter(); model(ids[:, -1:], past_key_values=cache, use_cache=True)
+            t0 = time.perf_counter(); model(ids[:, -1:], **cache_kwargs, use_cache=True)
             tc = time.perf_counter() - t0
             cache_drop_last(cache, 1)
             if r > 0:  # r == 0 is warm-up

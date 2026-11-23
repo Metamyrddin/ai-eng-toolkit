@@ -5,7 +5,7 @@ import torch
 from transformers import DynamicCache, LlamaConfig, LlamaForCausalLM
 
 import kv_cache_demo as kv
-from common.hf_compat import cache_drop_last, cache_seq_len
+from common.hf_compat import cache_argument_name, cache_drop_last, cache_seq_len
 
 
 def tiny_model():
@@ -31,7 +31,8 @@ def test_kv_formula_matches_measured_bytes():
     ids = torch.randint(0, 97, (1, 9))
     cache = DynamicCache()
     with torch.no_grad():
-        m(ids, past_key_values=cache, use_cache=True)
+        # The two stars pass the cache under the name this transformers version accepts.
+        m(ids, **{cache_argument_name(): cache}, use_cache=True)
     assert kv.cache_nbytes(cache) == kv.kv_formula_bytes(m.config, 9, bytes_per_elem=4)
 
 
@@ -40,7 +41,7 @@ def test_cache_drop_last():
     m = tiny_model()
     cache = DynamicCache()
     with torch.no_grad():
-        m(torch.randint(0, 97, (1, 10)), past_key_values=cache, use_cache=True)
+        m(torch.randint(0, 97, (1, 10)), **{cache_argument_name(): cache}, use_cache=True)
     assert cache_seq_len(cache) == 10
     cache_drop_last(cache, 3)
     assert cache_seq_len(cache) == 7
